@@ -115,7 +115,7 @@ export default function PrivacyPage() {
                 You can control cookie settings through your browser preferences.
               </p>
 
-              <h2>Children's Privacy</h2>
+              <h2>Children&apos;s Privacy</h2>
               <p>
                 Our services are not intended for children under 13. We do not knowingly collect personal information from children under 13. 
                 If you believe we have collected such information, please contact us immediately.

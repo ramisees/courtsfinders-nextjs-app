@@ -112,7 +112,7 @@ export default function SupportPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">What if the court is not available when I arrive?</h3>
                 <p className="text-gray-600">
                   If you encounter any issues with your booking, contact our support team immediately. 
-                  We'll help resolve the situation and may offer a refund or alternative booking.
+                  We&apos;ll help resolve the situation and may offer a refund or alternative booking.
                 </p>
               </div>
               

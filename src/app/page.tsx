@@ -22,7 +22,7 @@ export default function HomePage() {
       console.log('🔄 Initial load triggered')
       loadCourts()
     }
-  }, [hasLoaded, loading]) // Fixed dependencies
+  }, [hasLoaded, loading]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadCourts = async () => {
     // Prevent multiple simultaneous calls

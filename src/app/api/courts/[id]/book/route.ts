@@ -1,12 +1,16 @@
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 
+interface RouteParams {
+  params: Promise<{ id: string }>
+}
+
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: RouteParams
 ) {
   try {
-    const courtId = params.id;
+    const { id: courtId } = await params;
     const body = await request.json();
     const { date, startTime, endTime, userId } = body;
 
