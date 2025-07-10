@@ -72,7 +72,7 @@ export default function SupportPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I book a court?</h3>
                 <p className="text-gray-600">
                   Simply search for courts in your area, select your preferred court, choose an available time slot, 
-                  and complete the booking process. You'll receive a confirmation email with all the details.
+                  and complete the booking process. You&apos;ll receive a confirmation email with all the details.
                 </p>
               </div>
               
@@ -96,7 +96,7 @@ export default function SupportPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I add my court to the platform?</h3>
                 <p className="text-gray-600">
                   Court owners can list their facilities by contacting our partnership team. 
-                  We'll help you set up your listing and manage bookings through our platform.
+                  We&apos;ll help you set up your listing and manage bookings through our platform.
                 </p>
               </div>
               
@@ -119,7 +119,7 @@ export default function SupportPage() {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I create an account?</h3>
                 <p className="text-gray-600">
-                  Click the "Sign Up" button in the top navigation. You can sign up with your email address 
+                  Click the &quot;Sign Up&quot; button in the top navigation. You can sign up with your email address 
                   or use social login options like Google or Facebook.
                 </p>
               </div>
@@ -130,7 +130,7 @@ export default function SupportPage() {
           <div className="mt-12 bg-primary-50 p-8 rounded-lg text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Still Need Help?</h3>
             <p className="text-lg text-gray-600 mb-6">
-              Can't find what you're looking for? Our support team is here to help.
+              Can&apos;t find what you&apos;re looking for? Our support team is here to help.
             </p>
             <div className="flex justify-center gap-4">
               <Link 

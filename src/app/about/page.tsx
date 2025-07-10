@@ -44,8 +44,8 @@ export default function AboutPage() {
           <div className="prose prose-lg mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Mission</h2>
             <p className="text-lg text-gray-600 mb-8">
-              Courts Finder was created to solve a simple problem: finding quality sports facilities shouldn't be difficult. 
-              Whether you're looking for a tennis court for your weekend game, a basketball court for pickup games, 
+              Courts Finder was created to solve a simple problem: finding quality sports facilities shouldn&apos;t be difficult. 
+              Whether you&apos;re looking for a tennis court for your weekend game, a basketball court for pickup games, 
               or a multi-sport facility for your team, we make it easy to discover and book the perfect venue.
             </p>
 
@@ -89,7 +89,7 @@ export default function AboutPage() {
             </p>
 
             <p className="text-lg text-gray-600 mb-8">
-              Today, we're proud to serve thousands of players across the country, helping them find and book 
+              Today, we&apos;re proud to serve thousands of players across the country, helping them find and book 
               the perfect courts for their games. From casual players to serious athletes, Courts Finder is 
               your gateway to better sports experiences.
             </p>

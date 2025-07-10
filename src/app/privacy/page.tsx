@@ -47,7 +47,7 @@ export default function PrivacyPage() {
 
               <h2>Introduction</h2>
               <p>
-                Courts Finder ("we," "our," or "us") respects your privacy and is committed to protecting your personal data. 
+                Courts Finder (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) respects your privacy and is committed to protecting your personal data. 
                 This privacy policy explains how we collect, use, and safeguard your information when you use our platform.
               </p>
 
@@ -124,7 +124,7 @@ export default function PrivacyPage() {
               <h2>Changes to This Policy</h2>
               <p>
                 We may update this privacy policy from time to time. We will notify you of any significant changes by posting 
-                the new policy on our platform and updating the "last updated" date.
+                the new policy on our platform and updating the &quot;last updated&quot; date.
               </p>
 
               <h2>Contact Us</h2>

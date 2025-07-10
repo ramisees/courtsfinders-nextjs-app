@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
 import { Court } from '@/types/court'
 
 interface SearchResultsProps {
@@ -21,9 +22,9 @@ export default function SearchResults({
   // Fetch search results
   useEffect(() => {
     fetchResults()
-  }, [searchQuery, selectedSport])
+  }, [searchQuery, selectedSport]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const fetchResults = async () => {
+  const fetchResults = useCallback(async () => {
     setLoading(true)
     setError(null)
     
@@ -52,7 +53,7 @@ export default function SearchResults({
     } finally {
       setLoading(false)
     }
-  }
+  }, [searchQuery, selectedSport])
 
   const handleBooking = (courtId: string | number) => {
     if (onBooking) {
@@ -135,7 +136,7 @@ export default function SearchResults({
         {/* Debug info in development */}
         {process.env.NODE_ENV === 'development' && (
           <div className="text-xs text-gray-400 mt-2">
-            Debug: Query="{searchQuery}", Sport="{selectedSport}", Results={courts.length}
+            Debug: Query=&quot;{searchQuery}&quot;, Sport=&quot;{selectedSport}&quot;, Results={courts.length}
           </div>
         )}
       </div>
@@ -145,9 +146,11 @@ export default function SearchResults({
         {courts.map((court) => (
           <div key={court.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
             <div className="relative">
-              <img
+              <Image
                 src={court.image || 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop'}
                 alt={court.name}
+                width={300}
+                height={200}
                 className="w-full h-48 object-cover"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop'

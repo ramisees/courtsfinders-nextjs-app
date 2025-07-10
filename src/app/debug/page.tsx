@@ -19,7 +19,7 @@ export default function DebugPage() {
     }
 
     loadCourts()
-  }, []) // Empty dependency array
+  }, [callCount, loading]) // Include dependencies
 
   const loadCourts = async () => {
     console.log('🔄 Starting loadCourts...')

@@ -293,7 +293,7 @@ export const isAuthenticated = (): boolean => {
 }
 
 // Export everything for easy testing
-export default {
+const apiClient = {
   getAllCourts,
   searchCourts,
   getCourt,
@@ -306,3 +306,5 @@ export default {
   logoutUser,
   isAuthenticated
 }
+
+export default apiClient

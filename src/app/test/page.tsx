@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { getAllCourts, searchCourts } from '@/lib/api'
 
 export default function APITestPage() {
@@ -110,11 +111,11 @@ export default function APITestPage() {
           <div className="mb-6 p-4 bg-blue-50 border-l-4 border-blue-400">
             <h3 className="font-semibold text-blue-800">🔧 Quick Fix Options:</h3>
             <div className="mt-2 text-blue-700 text-sm">
-              <p><strong>If you're getting 404 errors:</strong></p>
+              <p><strong>If you&apos;re getting 404 errors:</strong></p>
               <ol className="ml-4 mt-2 space-y-1">
                 <li>1. Update <code>.env.local</code> with your deployed backend URL</li>
                 <li>2. Or start your existing backend on a different port</li>
-                <li>3. Or create API routes in this project's <code>src/app/api/</code> folder</li>
+                <li>3. Or create API routes in this project&apos;s <code>src/app/api/</code> folder</li>
               </ol>
             </div>
           </div>
@@ -145,7 +146,7 @@ export default function APITestPage() {
           
           <div className="bg-black text-green-400 p-4 rounded-lg font-mono text-sm h-96 overflow-y-auto">
             {testResults.length === 0 ? (
-              <div className="text-gray-500">Click "Run API Tests" to start testing your backend connection...</div>
+              <div className="text-gray-500">Click &quot;Run API Tests&quot; to start testing your backend connection...</div>
             ) : (
               testResults.map((result, index) => (
                 <div key={index} className="mb-1">
@@ -167,12 +168,12 @@ export default function APITestPage() {
           </div>
           
           <div className="mt-4">
-            <a 
+            <Link 
               href="/"
               className="text-blue-600 hover:text-blue-800 underline"
             >
               ← Back to Main Site
-            </a>
+            </Link>
           </div>
         </div>
       </div>

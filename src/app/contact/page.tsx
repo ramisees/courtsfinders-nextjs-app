@@ -33,7 +33,7 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl font-bold mb-6">Contact Us</h1>
           <p className="text-xl text-primary-100">
-            Get in touch with our team. We're here to help!
+            Get in touch with our team. We&apos;re here to help!
           </p>
         </div>
       </section>

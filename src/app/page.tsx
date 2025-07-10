@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { searchCourts, getAllCourts } from '@/lib/api'
 import { Court } from '@/types/court'
 
@@ -232,7 +233,7 @@ export default function HomePage() {
             {/* Debug Info - Remove in production */}
             {process.env.NODE_ENV === 'development' && (
               <div className="text-xs text-gray-400 mt-2">
-                Debug: Query="{searchQuery}", Sport="{selectedSport}", Loading={loading.toString()}, Courts={courts.length}
+                Debug: Query=&quot;{searchQuery}&quot;, Sport=&quot;{selectedSport}&quot;, Loading={loading.toString()}, Courts={courts.length}
               </div>
             )}
           </div>
@@ -292,9 +293,11 @@ export default function HomePage() {
               courts.map((court) => (
                 <div key={court.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                   <div className="relative">
-                    <img
+                    <Image
                       src={court.image || 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop'}
                       alt={court.name}
+                      width={300}
+                      height={200}
                       className="w-full h-48 object-cover"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop'

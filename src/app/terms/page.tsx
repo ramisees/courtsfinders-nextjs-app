@@ -128,7 +128,7 @@ export default function TermsPage() {
 
               <h2>Disclaimers</h2>
               <ul>
-                <li>Courts Finder is provided "as is" without warranties of any kind</li>
+                <li>Courts Finder is provided &quot;as is&quot; without warranties of any kind</li>
                 <li>We do not guarantee the availability or condition of any court</li>
                 <li>We are not responsible for disputes between users and court owners</li>
                 <li>Use of sports facilities is at your own risk</li>
