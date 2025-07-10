@@ -147,13 +147,13 @@ export default function SearchResults({
           <div key={court.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
             <div className="relative">
               <Image
-                src={court.image || 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop'}
+                src={court.image || 'https://placehold.co/300x200/e5e7eb/6b7280?text=Court+Image'}
                 alt={court.name}
                 width={300}
                 height={200}
                 className="w-full h-48 object-cover"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop'
+                  (e.target as HTMLImageElement).src = 'https://placehold.co/300x200/e5e7eb/6b7280?text=Court+Image'
                 }}
               />
               <span className={`absolute top-3 right-3 px-3 py-1 rounded-full text-sm font-semibold ${

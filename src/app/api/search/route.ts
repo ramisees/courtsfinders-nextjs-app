@@ -47,7 +47,7 @@ const courts = [
     surface: "composite",
     indoor: true,
     available: false,
-    image: "https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=300&h=200&fit=crop",
+    image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=300&h=200&fit=crop",
     phone: "(828) 555-0789",
     website: "https://elitepickleball.com"
   },
@@ -79,7 +79,7 @@ const courts = [
     surface: "hard",
     indoor: false,
     available: true,
-    image: "https://images.unsplash.com/photo-1544966503-7cc5ac882d5d?w=300&h=200&fit=crop",
+    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop",
     phone: "(828) 555-0234",
     website: "https://lr.edu/tennis"
   },

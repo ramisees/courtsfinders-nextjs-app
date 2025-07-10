@@ -117,8 +117,8 @@ export class GooglePlacesService {
     ]
     
     return places.filter(place => {
-      const name = place.name.toLowerCase()
-      const address = place.formatted_address.toLowerCase()
+      const name = place.name?.toLowerCase() || ''
+      const address = place.formatted_address?.toLowerCase() || ''
       const text = `${name} ${address}`
       
       return sportsKeywords.some(keyword => text.includes(keyword))
@@ -138,12 +138,12 @@ export class GooglePlacesService {
 
     return {
       id: place.place_id,
-      name: place.name,
+      name: place.name || 'Unknown Venue',
       sport: this.determineSportFromPlace(place),
-      address: place.formatted_address,
+      address: place.formatted_address || 'Address not available',
       coordinates: {
-        lat: place.geometry.location.lat,
-        lng: place.geometry.location.lng
+        lat: place.geometry?.location?.lat || 0,
+        lng: place.geometry?.location?.lng || 0
       },
       rating: place.rating || 4.0,
       pricePerHour: this.estimatePrice(place),
@@ -159,7 +159,7 @@ export class GooglePlacesService {
 
   // Determine sport type from place data
   private determineSportFromPlace(place: GooglePlacesResult): string {
-    const name = place.name.toLowerCase()
+    const name = place.name?.toLowerCase() || ''
     
     if (name.includes('tennis')) return 'tennis'
     if (name.includes('basketball')) return 'basketball'
@@ -193,8 +193,8 @@ export class GooglePlacesService {
 
   // Check if facility is likely indoor
   private isIndoorFacility(place: GooglePlacesResult): boolean {
-    const name = place.name.toLowerCase()
-    const types = place.types.join(' ').toLowerCase()
+    const name = place.name?.toLowerCase() || ''
+    const types = place.types?.join(' ').toLowerCase() || ''
     
     return name.includes('indoor') || 
            types.includes('gym') || 
@@ -208,7 +208,7 @@ export class GooglePlacesService {
     const images = {
       tennis: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=300&h=200&fit=crop',
       basketball: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=300&h=200&fit=crop',
-      pickleball: 'https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=300&h=200&fit=crop',
+      pickleball: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=300&h=200&fit=crop',
       'multi-sport': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop'
     }
     
