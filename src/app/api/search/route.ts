@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { GooglePlacesService } from '@/lib/googlePlaces'
 
 // Same court data as /api/courts for consistency
 const courts = [
@@ -115,6 +116,47 @@ export async function GET(request: NextRequest) {
     
     console.log(`🔍 Search params: query="${query}", sport="${sport}", location="${location}"`)
     
+    // Check if we have Google Places API key
+    const googleApiKey = process.env.GOOGLE_PLACES_API_KEY
+    
+    // If we have a location query and Google API key, use Google Places
+    if (query && googleApiKey && isLocationQuery(query)) {
+      console.log('🌍 Using Google Places API for location search:', query)
+      
+      try {
+        const placesService = new GooglePlacesService(googleApiKey)
+        const googleResults = await placesService.searchSportsFacilities(query)
+        
+        // Convert Google Places results to our Court format
+        let googleCourts = googleResults.map(place => 
+          placesService.convertToCourtFormat(place, sport)
+        )
+        
+        // Filter by sport if specified
+        if (sport && sport !== 'all') {
+          googleCourts = googleCourts.filter(court => 
+            court.sport.toLowerCase() === sport.toLowerCase()
+          )
+        }
+        
+        console.log(`✅ Found ${googleCourts.length} courts via Google Places`)
+        
+        const response = NextResponse.json(googleCourts)
+        response.headers.set('Access-Control-Allow-Origin', '*')
+        response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+        response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        response.headers.set('Cache-Control', 'no-cache')
+        
+        return response
+        
+      } catch (googleError) {
+        console.error('❌ Google Places API error:', googleError)
+        // Fall back to static data on Google API failure
+      }
+    }
+    
+    // Use static data (original behavior)
+    console.log('🏠 Using static court data')
     let filteredCourts = [...courts] // Create a copy
     
     // Filter by search query (name or address)
@@ -171,6 +213,26 @@ export async function GET(request: NextRequest) {
     
     return errorResponse
   }
+}
+
+// Helper function to determine if query is a location search
+function isLocationQuery(query: string): boolean {
+  const locationKeywords = [
+    'london', 'paris', 'tokyo', 'new york', 'los angeles', 'chicago',
+    'miami', 'seattle', 'boston', 'atlanta', 'dallas', 'houston',
+    'city', 'downtown', 'near me', 'in ', 'at ', 'around '
+  ]
+  
+  const lowercaseQuery = query.toLowerCase()
+  
+  // Check for city names, state abbreviations, country names
+  return locationKeywords.some(keyword => 
+    lowercaseQuery.includes(keyword)
+  ) || 
+  // Check for ZIP codes (5 digits)
+  /\b\d{5}\b/.test(query) ||
+  // Check for addresses (contains street indicators)
+  /\b(street|st|avenue|ave|road|rd|blvd|boulevard|lane|ln|drive|dr)\b/i.test(query)
 }
 
 /**

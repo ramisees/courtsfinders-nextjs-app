@@ -177,7 +177,7 @@ export default function HomePage() {
               <div className="md:col-span-2">
                 <input
                   type="text"
-                  placeholder="Search by court name or location..."
+                  placeholder="Try 'London', 'New York', 'tennis courts near me', or your city..."
                   value={searchQuery}
                   onChange={(e) => handleSearchInputChange(e.target.value)}
                   className="w-full px-4 py-3 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -208,11 +208,13 @@ export default function HomePage() {
               <button 
                 onClick={clearSearch}
                 className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-semibold"
-                disabled={loading}
               >
-                Clear & Show All
+                Clear
               </button>
             </div>
+            <p className="text-sm text-gray-600 mt-3">
+              💡 <strong>Tip:</strong> Search for cities like &quot;London&quot;, &quot;Paris&quot;, or &quot;New York&quot; to find sports facilities worldwide!
+            </p>
           </div>
         </div>
       </section>
