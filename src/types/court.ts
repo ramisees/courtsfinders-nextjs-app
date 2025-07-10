@@ -1,11 +1,11 @@
 // API types for court data
 export interface Court {
-  id: string
+  id: string | number
   name: string
-  type: string
-  location: string
+  sport: string
+  address: string
   rating: number
-  price: string
+  pricePerHour: number
   image: string
   available: boolean
   amenities?: string[]
@@ -14,6 +14,10 @@ export interface Court {
     lat: number
     lng: number
   }
+  surface?: string
+  indoor?: boolean
+  phone?: string
+  website?: string | null
 }
 
 export interface SearchFilters {

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Test - Courts Finder</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background: #f5f5f5;
+        }
+        .test-container { 
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-link { 
+            display: block;
+            padding: 12px 16px; 
+            margin: 8px 0; 
+            background: #007bff; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 4px; 
+            transition: background 0.2s;
+        }
+        .test-link:hover { 
+            background: #0056b3; 
+        }
+        .section-title {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+        .status { 
+            padding: 8px 12px; 
+            border-radius: 4px; 
+            margin: 4px 0;
+            font-size: 14px;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Courts Finder Navigation Test</h1>
+    <p>Test all navigation links to ensure they work correctly in your Next.js app.</p>
+    
+    <div class="status info">
+        <strong>Instructions:</strong> 
+        1. Make sure your Next.js app is running (npm run dev)<br>
+        2. Click each link below to test navigation<br>
+        3. Each link should open in the same tab and load the correct page
+    </div>
+
+    <div class="test-container">
+        <h2 class="section-title">🏠 Main Navigation</h2>
+        <a href="/" class="test-link" target="_self">Home / Find Courts</a>
+        <a href="/about" class="test-link" target="_self">About Page</a>
+        <a href="/contact" class="test-link" target="_self">Contact Page</a>
+        <a href="/support" class="test-link" target="_self">Support Center</a>
+    </div>
+
+    <div class="test-container">
+        <h2 class="section-title">🎾 Court Categories</h2>
+        <a href="/courts/tennis" class="test-link" target="_self">Tennis Courts</a>
+        <a href="/courts/basketball" class="test-link" target="_self">Basketball Courts</a>
+        <a href="/courts/multi-sport" class="test-link" target="_self">Multi-Sport Facilities</a>
+    </div>
+
+    <div class="test-container">
+        <h2 class="section-title">📄 Legal Pages</h2>
+        <a href="/privacy" class="test-link" target="_self">Privacy Policy</a>
+        <a href="/terms" class="test-link" target="_self">Terms of Service</a>
+    </div>
+
+    <div class="test-container">
+        <h2 class="section-title">🔍 Search Functionality</h2>
+        <a href="/?sport=tennis" class="test-link" target="_self">Search Tennis Courts</a>
+        <a href="/?sport=basketball" class="test-link" target="_self">Search Basketball Courts</a>
+        <a href="/?sport=pickleball" class="test-link" target="_self">Search Pickleball Courts</a>
+        <a href="/?sport=multi-sport" class="test-link" target="_self">Search Multi-Sport Facilities</a>
+    </div>
+
+    <div class="test-container">
+        <h2 class="section-title">🛠️ Debug Pages</h2>
+        <a href="/test" class="test-link" target="_self">Test Page</a>
+        <a href="/debug" class="test-link" target="_self">Debug Page</a>
+        <a href="/test-search-ui.html" class="test-link" target="_self">Search UI Test (Static)</a>
+    </div>
+
+    <div class="test-container">
+        <h2 class="section-title">✅ Test Results</h2>
+        <div id="testResults">
+            <div class="status info">Click the links above to test navigation. Results will appear here.</div>
+        </div>
+        
+        <button onclick="runAutomatedTest()" style="
+            margin-top: 16px;
+            padding: 12px 24px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        ">
+            Run Automated Test
+        </button>
+    </div>
+
+    <script>
+        // Track test results
+        let testResults = [];
+
+        // Test all links automatically
+        async function runAutomatedTest() {
+            const resultsDiv = document.getElementById('testResults');
+            resultsDiv.innerHTML = '<div class="status info">Running automated tests...</div>';
+            
+            const links = [
+                { name: 'Home', url: '/' },
+                { name: 'About', url: '/about' },
+                { name: 'Contact', url: '/contact' },
+                { name: 'Support', url: '/support' },
+                { name: 'Tennis Courts', url: '/courts/tennis' },
+                { name: 'Basketball Courts', url: '/courts/basketball' },
+                { name: 'Multi-Sport', url: '/courts/multi-sport' },
+                { name: 'Privacy Policy', url: '/privacy' },
+                { name: 'Terms of Service', url: '/terms' },
+                { name: 'Tennis Search', url: '/?sport=tennis' },
+                { name: 'Basketball Search', url: '/?sport=basketball' },
+            ];
+
+            testResults = [];
+            
+            for (const link of links) {
+                try {
+                    const response = await fetch(link.url, { method: 'HEAD' });
+                    const status = response.ok ? 'success' : 'error';
+                    const message = response.ok ? 
+                        `✅ ${link.name}: ${response.status} OK` : 
+                        `❌ ${link.name}: ${response.status} ${response.statusText}`;
+                    
+                    testResults.push({ status, message });
+                } catch (error) {
+                    testResults.push({ 
+                        status: 'error', 
+                        message: `❌ ${link.name}: ${error.message}` 
+                    });
+                }
+            }
+            
+            // Display results
+            displayResults();
+        }
+
+        function displayResults() {
+            const resultsDiv = document.getElementById('testResults');
+            const successCount = testResults.filter(r => r.status === 'success').length;
+            const totalCount = testResults.length;
+            
+            let html = `<div class="status ${successCount === totalCount ? 'success' : 'error'}">
+                Test Results: ${successCount}/${totalCount} pages accessible
+            </div>`;
+            
+            testResults.forEach(result => {
+                html += `<div class="status ${result.status}">${result.message}</div>`;
+            });
+            
+            if (successCount === totalCount) {
+                html += '<div class="status success">🎉 All navigation links are working correctly!</div>';
+            } else {
+                html += '<div class="status error">⚠️ Some pages are not accessible. Make sure your Next.js app is running.</div>';
+            }
+            
+            resultsDiv.innerHTML = html;
+        }
+
+        // Display current URL info
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUrl = window.location.href;
+            const baseUrl = currentUrl.replace(/\/[^\/]*$/, '');
+            
+            const infoDiv = document.querySelector('.status.info');
+            infoDiv.innerHTML += `<br><strong>Current URL:</strong> ${currentUrl}<br><strong>Base URL:</strong> ${baseUrl}`;
+        });
+    </script>
+</body>
+</html>

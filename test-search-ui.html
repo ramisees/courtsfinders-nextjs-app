@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search UI Test</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        .test-section { 
+            border: 1px solid #ddd; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 8px; 
+        }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        button { 
+            padding: 10px 20px; 
+            margin: 5px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            background: #007bff; 
+            color: white; 
+        }
+        button:hover { background: #0056b3; }
+        input, select { 
+            padding: 8px; 
+            margin: 5px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+        }
+        .result { 
+            margin-top: 10px; 
+            padding: 10px; 
+            background: #f8f9fa; 
+            border-radius: 4px; 
+            white-space: pre-wrap; 
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Courts Finder Search UI Test</h1>
+    <p>This page tests the API endpoints directly to help debug search issues.</p>
+    
+    <div class="test-section">
+        <h2>1. API Connection Test</h2>
+        <button onclick="testConnection()">Test /api/courts</button>
+        <div id="connectionResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Search Test</h2>
+        <input type="text" id="searchQuery" placeholder="Search query (e.g., tennis)" value="tennis">
+        <select id="sportFilter">
+            <option value="all">All Sports</option>
+            <option value="tennis">Tennis</option>
+            <option value="basketball">Basketball</option>
+            <option value="pickleball">Pickleball</option>
+            <option value="multi-sport">Multi-sport</option>
+        </select>
+        <button onclick="testSearch()">Test Search</button>
+        <div id="searchResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Filter Test</h2>
+        <button onclick="testSportFilter('tennis')">Test Tennis Filter</button>
+        <button onclick="testSportFilter('basketball')">Test Basketball Filter</button>
+        <div id="filterResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Real-time Search Simulation</h2>
+        <input type="text" id="realtimeSearch" placeholder="Type to search..." oninput="realtimeSearchTest()">
+        <div id="realtimeResult" class="result"></div>
+    </div>
+
+    <script>
+        const API_BASE = '/api';  // Relative URL for same-origin requests
+
+        async function testConnection() {
+            const resultDiv = document.getElementById('connectionResult');
+            resultDiv.textContent = 'Testing connection...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/courts`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ SUCCESS: Found ${data.courts?.length || data.length} courts\n\nResponse:\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ ERROR: ${response.status} ${response.statusText}\n\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ NETWORK ERROR: ${error.message}`;
+            }
+        }
+
+        async function testSearch() {
+            const resultDiv = document.getElementById('searchResult');
+            const query = document.getElementById('searchQuery').value;
+            const sport = document.getElementById('sportFilter').value;
+            
+            resultDiv.textContent = 'Searching...';
+            
+            const params = new URLSearchParams();
+            if (query) params.append('q', query);
+            if (sport !== 'all') params.append('sport', sport);
+            
+            const url = `${API_BASE}/search${params.toString() ? '?' + params.toString() : ''}`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `✅ SEARCH SUCCESS: Found ${data.length} results for query="${query}", sport="${sport}"\n\nURL: ${url}\n\nResults:\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ SEARCH ERROR: ${response.status} ${response.statusText}\n\nURL: ${url}\n\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ SEARCH NETWORK ERROR: ${error.message}\n\nURL: ${url}`;
+            }
+        }
+
+        async function testSportFilter(sport) {
+            const resultDiv = document.getElementById('filterResult');
+            resultDiv.textContent = `Testing ${sport} filter...`;
+            
+            try {
+                const response = await fetch(`${API_BASE}/search?sport=${sport}`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const filteredCorrectly = data.every(court => court.sport === sport);
+                    resultDiv.className = `result ${filteredCorrectly ? 'success' : 'error'}`;
+                    resultDiv.textContent = `${filteredCorrectly ? '✅' : '❌'} ${sport.toUpperCase()} FILTER: Found ${data.length} courts\n\nFiltered correctly: ${filteredCorrectly}\n\nCourts:\n${data.map(c => `- ${c.name} (${c.sport})`).join('\n')}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ FILTER ERROR: ${response.status} ${response.statusText}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = `❌ FILTER NETWORK ERROR: ${error.message}`;
+            }
+        }
+
+        let realtimeTimeout;
+        async function realtimeSearchTest() {
+            const query = document.getElementById('realtimeSearch').value;
+            const resultDiv = document.getElementById('realtimeResult');
+            
+            // Clear previous timeout
+            if (realtimeTimeout) clearTimeout(realtimeTimeout);
+            
+            // Set new timeout (debounce)
+            realtimeTimeout = setTimeout(async () => {
+                if (!query.trim()) {
+                    resultDiv.textContent = 'Type something to search...';
+                    resultDiv.className = 'result';
+                    return;
+                }
+                
+                resultDiv.textContent = `Searching for "${query}"...`;
+                
+                try {
+                    const response = await fetch(`${API_BASE}/search?q=${encodeURIComponent(query)}`);
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        resultDiv.className = 'result success';
+                        resultDiv.textContent = `✅ Found ${data.length} results for "${query}"\n\n${data.map(c => `- ${c.name} (${c.sport})`).join('\n')}`;
+                    } else {
+                        resultDiv.className = 'result error';
+                        resultDiv.textContent = `❌ Search failed: ${response.status}`;
+                    }
+                } catch (error) {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `❌ Error: ${error.message}`;
+                }
+            }, 500);
+        }
+
+        // Auto-test connection on page load
+        window.onload = () => testConnection();
+    </script>
+</body>
+</html>

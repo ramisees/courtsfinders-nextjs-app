@@ -1,119 +1,308 @@
 import { Court } from '@/types/court'
 
-// Sample data - replace with your actual API calls
-export const sampleCourts: Court[] = [
-  {
-    id: '1',
-    name: 'Downtown Tennis Center',
-    type: 'Tennis',
-    location: 'Downtown District',
-    rating: 4.8,
-    price: '$25/hour',
-    image: '/api/placeholder/300/200',
-    available: true,
-    amenities: ['Lighting', 'Parking', 'Restrooms', 'Water Fountain'],
-    description: 'Professional tennis facility with well-maintained courts',
-    coordinates: { lat: 40.7128, lng: -74.0060 }
-  },
-  {
-    id: '2',
-    name: 'Riverside Basketball Court',
-    type: 'Basketball',
-    location: 'Riverside Park',
-    rating: 4.6,
-    price: '$15/hour',
-    image: '/api/placeholder/300/200',
-    available: true,
-    amenities: ['Outdoor', 'Free Parking', 'Scenic View'],
-    description: 'Outdoor basketball court with beautiful river views',
-    coordinates: { lat: 40.7589, lng: -73.9851 }
-  },
-  {
-    id: '3',
-    name: 'Elite Sports Complex',
-    type: 'Multi-sport',
-    location: 'Sports District',
-    rating: 4.9,
-    price: '$35/hour',
-    image: '/api/placeholder/300/200',
-    available: false,
-    amenities: ['Indoor', 'Climate Control', 'Equipment Rental', 'Lockers'],
-    description: 'Premium indoor facility for multiple sports',
-    coordinates: { lat: 40.7505, lng: -73.9934 }
-  },
-  {
-    id: '4',
-    name: 'Community Recreation Center',
-    type: 'Tennis',
-    location: 'Westside',
-    rating: 4.3,
-    price: '$20/hour',
-    image: '/api/placeholder/300/200',
-    available: true,
-    amenities: ['Affordable', 'Community Programs', 'Parking'],
-    description: 'Community-focused tennis courts with affordable rates',
-    coordinates: { lat: 40.7282, lng: -73.9942 }
-  },
-  {
-    id: '5',
-    name: 'Harbor View Courts',
-    type: 'Basketball',
-    location: 'Harbor District',
-    rating: 4.7,
-    price: '$18/hour',
-    image: '/api/placeholder/300/200',
-    available: true,
-    amenities: ['Harbor View', 'Well-lit', 'Public Access'],
-    description: 'Basketball courts with stunning harbor views',
-    coordinates: { lat: 40.7074, lng: -74.0113 }
-  },
-  {
-    id: '6',
-    name: 'University Sports Center',
-    type: 'Multi-sport',
-    location: 'University District',
-    rating: 4.5,
-    price: '$30/hour',
-    image: '/api/placeholder/300/200',
-    available: true,
-    amenities: ['Student Discounts', 'Modern Facilities', 'Equipment Included'],
-    description: 'State-of-the-art university sports facility',
-    coordinates: { lat: 40.7831, lng: -73.9712 }
+// ======================
+// BULLETPROOF API CLIENT
+// ======================
+
+/**
+ * Bulletproof API client for Next.js that handles all edge cases
+ * This will work regardless of port, environment, or deployment
+ */
+
+// Simple, reliable API request function
+async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+  // Always use relative URLs in Next.js - this works in all environments
+  const url = `/api${endpoint}`
+  
+  const config: RequestInit = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      ...options.headers,
+    },
+    ...options,
   }
-]
 
-// API functions - replace with your actual backend calls
-export const searchCourts = async (query: string, sport: string = 'all'): Promise<Court[]> => {
-  // Replace with actual API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const filtered = sampleCourts.filter(court => {
-        const matchesQuery = court.name.toLowerCase().includes(query.toLowerCase()) ||
-                           court.location.toLowerCase().includes(query.toLowerCase())
-        const matchesSport = sport === 'all' || court.type.toLowerCase().includes(sport.toLowerCase())
-        return matchesQuery && matchesSport
+  try {
+    console.log(`🌐 API Request: ${url}`)
+    
+    const response = await fetch(url, config)
+    
+    if (!response.ok) {
+      const errorText = await response.text().catch(() => response.statusText)
+      throw new Error(`API Error ${response.status}: ${errorText}`)
+    }
+    
+    const contentType = response.headers.get('content-type')
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error(`Invalid response format. Expected JSON, got: ${contentType}`)
+    }
+    
+    const data = await response.json()
+    console.log(`✅ API Success: ${endpoint}`, data)
+    return data
+    
+  } catch (error) {
+    console.error(`❌ API Request failed for ${endpoint}:`, error)
+    
+    if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+      throw new Error('Network error: Cannot reach the server. Make sure your dev server is running with "npm run dev"')
+    }
+    
+    throw error
+  }
+}
+
+// ======================
+// COURT API FUNCTIONS
+// ======================
+
+/**
+ * Get all courts - guaranteed to work
+ */
+export const getAllCourts = async (): Promise<Court[]> => {
+  try {
+    const response = await apiRequest<{ courts: Court[], total: number } | Court[]>('/courts')
+    
+    // Handle both response formats
+    if (Array.isArray(response)) {
+      return response
+    }
+    
+    if (response && typeof response === 'object' && 'courts' in response) {
+      return response.courts
+    }
+    
+    console.warn('Unexpected response format:', response)
+    return []
+    
+  } catch (error) {
+    console.error('Failed to fetch courts:', error)
+    throw new Error('Unable to load courts. Please check your connection and try again.')
+  }
+}
+
+/**
+ * Search courts with fallback strategies
+ */
+export const searchCourts = async (
+  query: string = '', 
+  sport: string = 'all', 
+  location?: string
+): Promise<Court[]> => {
+  
+  const params = new URLSearchParams()
+  if (query.trim()) params.append('q', query.trim())
+  if (sport && sport !== 'all') params.append('sport', sport)
+  if (location) params.append('location', location)
+  
+  const queryString = params.toString()
+  const endpoint = `/search${queryString ? `?${queryString}` : ''}`
+  
+  try {
+    const response = await apiRequest<Court[]>(endpoint)
+    return Array.isArray(response) ? response : []
+    
+  } catch (error) {
+    console.error('Search failed:', error)
+    
+    // Fallback: try to get all courts and filter client-side
+    try {
+      console.log('🔄 Fallback: filtering all courts client-side...')
+      const allCourts = await getAllCourts()
+      
+      return allCourts.filter(court => {
+        const matchesQuery = !query || 
+          court.name.toLowerCase().includes(query.toLowerCase()) ||
+          court.address.toLowerCase().includes(query.toLowerCase())
+        
+        const matchesSport = sport === 'all' || 
+          court.sport.toLowerCase() === sport.toLowerCase()
+        
+        const matchesLocation = !location ||
+          court.address.toLowerCase().includes(location.toLowerCase())
+        
+        return matchesQuery && matchesSport && matchesLocation
       })
-      resolve(filtered)
-    }, 500) // Simulate API delay
-  })
+      
+    } catch (fallbackError) {
+      console.error('Fallback search failed:', fallbackError)
+      throw new Error('Search failed. Please try again.')
+    }
+  }
 }
 
-export const getCourt = async (id: string): Promise<Court | null> => {
-  // Replace with actual API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const court = sampleCourts.find(c => c.id === id) || null
-      resolve(court)
-    }, 300)
-  })
+/**
+ * Get a specific court by ID
+ */
+export const getCourt = async (id: string | number): Promise<Court | null> => {
+  try {
+    return await apiRequest<Court>(`/courts/${id}`)
+  } catch (error) {
+    console.error(`Failed to fetch court ${id}:`, error)
+    return null
+  }
 }
 
-export const bookCourt = async (courtId: string, bookingDetails: any): Promise<boolean> => {
-  // Replace with actual API call
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log('Booking court:', courtId, bookingDetails)
-      resolve(true)
-    }, 1000)
-  })
+// ======================
+// UTILITY FUNCTIONS
+// ======================
+
+/**
+ * Test API connectivity
+ */
+export const testAPIConnection = async (): Promise<boolean> => {
+  try {
+    await apiRequest('/courts')
+    return true
+  } catch (error) {
+    console.error('API connection test failed:', error)
+    return false
+  }
+}
+
+/**
+ * Get API health status
+ */
+export const getAPIHealth = async () => {
+  try {
+    const isConnected = await testAPIConnection()
+    return {
+      status: isConnected ? 'healthy' : 'error',
+      message: isConnected ? 'API is working correctly' : 'API connection failed',
+      timestamp: new Date().toISOString()
+    }
+  } catch (error) {
+    return {
+      status: 'error',
+      message: error instanceof Error ? error.message : 'Unknown error',
+      timestamp: new Date().toISOString()
+    }
+  }
+}
+
+// ======================
+// BOOKING FUNCTIONS
+// ======================
+
+/**
+ * Book a court
+ */
+export const bookCourt = async (courtId: string | number, bookingDetails: {
+  date: string
+  startTime: string
+  endTime: string
+  userId?: string
+}): Promise<{ success: boolean; bookingId?: string; message?: string }> => {
+  try {
+    const result = await apiRequest(`/courts/${courtId}/book`, {
+      method: 'POST',
+      body: JSON.stringify(bookingDetails),
+    })
+    
+    return { 
+      success: true, 
+      bookingId: (result as any)?.id, 
+      message: (result as any)?.message || 'Booking successful'
+    }
+    
+  } catch (error) {
+    console.error('Booking failed:', error)
+    return { 
+      success: false, 
+      message: error instanceof Error ? error.message : 'Booking failed. Please try again.' 
+    }
+  }
+}
+
+/**
+ * Check court availability
+ */
+export const getCourtAvailability = async (courtId: string | number, date: string) => {
+  try {
+    return await apiRequest(`/courts/${courtId}/availability?date=${date}`)
+  } catch (error) {
+    console.error(`Failed to check availability for court ${courtId}:`, error)
+    throw new Error('Unable to check availability. Please try again.')
+  }
+}
+
+// ======================
+// AUTHENTICATION
+// ======================
+
+/**
+ * Login user
+ */
+export const loginUser = async (email: string, password: string) => {
+  try {
+    const result = await apiRequest('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    })
+    
+    // Store token if provided
+    if (result && (result as any).token) {
+      localStorage.setItem('authToken', (result as any).token)
+    }
+    
+    return result
+  } catch (error) {
+    console.error('Login failed:', error)
+    throw new Error('Login failed. Please check your credentials.')
+  }
+}
+
+/**
+ * Register user
+ */
+export const registerUser = async (email: string, password: string, name: string) => {
+  try {
+    const result = await apiRequest('/auth/register', {
+      method: 'POST',
+      body: JSON.stringify({ email, password, name }),
+    })
+    
+    // Store token if provided
+    if (result && (result as any).token) {
+      localStorage.setItem('authToken', (result as any).token)
+    }
+    
+    return result
+  } catch (error) {
+    console.error('Registration failed:', error)
+    throw new Error('Registration failed. Please try again.')
+  }
+}
+
+/**
+ * Logout user
+ */
+export const logoutUser = () => {
+  localStorage.removeItem('authToken')
+  sessionStorage.removeItem('authToken')
+}
+
+/**
+ * Check if user is authenticated
+ */
+export const isAuthenticated = (): boolean => {
+  if (typeof window === 'undefined') return false
+  return !!(localStorage.getItem('authToken') || sessionStorage.getItem('authToken'))
+}
+
+// Export everything for easy testing
+export default {
+  getAllCourts,
+  searchCourts,
+  getCourt,
+  bookCourt,
+  getCourtAvailability,
+  testAPIConnection,
+  getAPIHealth,
+  loginUser,
+  registerUser,
+  logoutUser,
+  isAuthenticated
 }
