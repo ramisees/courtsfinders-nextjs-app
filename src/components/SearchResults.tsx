@@ -3,17 +3,17 @@
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { Court } from '@/types/court'
+import CourtImage from './CourtImage'
+import NoSSR from './NoSSR'
 
 interface SearchResultsProps {
   searchQuery?: string
   selectedSport?: string
-  onBooking?: (courtId: string | number) => void
 }
 
 export default function SearchResults({ 
   searchQuery = '', 
-  selectedSport = 'all', 
-  onBooking 
+  selectedSport = 'all'
 }: SearchResultsProps) {
   const [courts, setCourts] = useState<Court[]>([])
   const [loading, setLoading] = useState(false)
@@ -54,14 +54,6 @@ export default function SearchResults({
       setLoading(false)
     }
   }, [searchQuery, selectedSport])
-
-  const handleBooking = (courtId: string | number) => {
-    if (onBooking) {
-      onBooking(courtId)
-    } else {
-      alert(`Booking court ${courtId} - integrate with your booking system`)
-    }
-  }
 
   // Loading state
   if (loading) {
@@ -134,11 +126,13 @@ export default function SearchResults({
         </p>
         
         {/* Debug info in development */}
-        {process.env.NODE_ENV === 'development' && (
-          <div className="text-xs text-gray-400 mt-2">
-            Debug: Query=&quot;{searchQuery}&quot;, Sport=&quot;{selectedSport}&quot;, Results={courts.length}
-          </div>
-        )}
+        <NoSSR>
+          {process.env.NODE_ENV === 'development' && (
+            <div className="text-xs text-gray-400 mt-2">
+              Debug: Query=&quot;{searchQuery}&quot;, Sport=&quot;{selectedSport}&quot;, Results={courts.length}
+            </div>
+          )}
+        </NoSSR>
       </div>
 
       {/* Results Grid */}
@@ -146,15 +140,13 @@ export default function SearchResults({
         {courts.map((court) => (
           <div key={court.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
             <div className="relative">
-              <Image
-                src={court.image || 'https://placehold.co/300x200/e5e7eb/6b7280?text=Court+Image'}
+              <CourtImage
+                src={court.image}
                 alt={court.name}
-                width={300}
-                height={200}
-                className="w-full h-48 object-cover"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://placehold.co/300x200/e5e7eb/6b7280?text=Court+Image'
-                }}
+                sport={court.sport}
+                className="w-full h-48"
+                showLoading={true}
+                showSportIcon={true}
               />
               <span className={`absolute top-3 right-3 px-3 py-1 rounded-full text-sm font-semibold ${
                 court.available ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
@@ -178,9 +170,6 @@ export default function SearchResults({
                 <span className="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm font-medium">
                   {court.sport}
                 </span>
-                <span className="text-xl font-bold text-primary-600">
-                  ${court.pricePerHour}/hour
-                </span>
               </div>
               
               {/* Amenities */}
@@ -198,18 +187,6 @@ export default function SearchResults({
                   </div>
                 </div>
               )}
-              
-              <button 
-                onClick={() => handleBooking(court.id)}
-                className={`w-full py-3 rounded-lg font-semibold transition-colors ${
-                  court.available 
-                    ? 'bg-primary-600 text-white hover:bg-primary-700' 
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                }`}
-                disabled={!court.available}
-              >
-                {court.available ? 'Book Now' : 'Unavailable'}
-              </button>
             </div>
           </div>
         ))}

@@ -1,5 +1,7 @@
 import { Court } from '@/types/court'
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api'
+
 // ======================
 // BULLETPROOF API CLIENT
 // ======================
@@ -130,6 +132,107 @@ export const searchCourts = async (
       console.error('Fallback search failed:', fallbackError)
       throw new Error('Search failed. Please try again.')
     }
+  }
+}
+
+/**
+ * Search courts near user's location with radius filtering (mock data only)
+ */
+export const searchCourtsNearMe = async (
+  latitude: number,
+  longitude: number,
+  radiusMiles: number = 10,
+  sport: string = 'all',
+  query: string = ''
+): Promise<Court[]> => {
+  
+  try {
+    console.log(`📍 Searching courts within ${radiusMiles} miles of ${latitude}, ${longitude}`)
+    
+    // Use client-side filtering since we don't have a location-based API endpoint
+    console.log('🔄 Filtering courts by distance client-side...')
+    const allCourts = await getAllCourts()
+    
+    // Calculate distance for each court and filter
+    const radiusKm = radiusMiles * 1.60934
+    
+    return allCourts
+      .map(court => {
+        if (!court.coordinates) return null
+        
+        // Calculate distance using Haversine formula
+        const distance = calculateDistance(
+          latitude,
+          longitude,
+          court.coordinates.lat,
+          court.coordinates.lng
+        )
+        
+        return { ...court, distance }
+      })
+      .filter((court): court is Court & { distance: number } => {
+        if (!court) return false
+        
+        const withinRadius = court.distance <= radiusKm
+        const matchesSport = sport === 'all' || 
+          court.sport.toLowerCase() === sport.toLowerCase()
+        const matchesQuery = !query || 
+          court.name.toLowerCase().includes(query.toLowerCase()) ||
+          court.address.toLowerCase().includes(query.toLowerCase())
+        
+        return withinRadius && matchesSport && matchesQuery
+      })
+      .sort((a, b) => a.distance - b.distance) // Sort by distance (closest first)
+      .slice(0, 50) // Limit results
+    
+  } catch (error) {
+    console.error('Location-based search failed:', error)
+    throw new Error('Unable to search for courts near your location')
+  }
+}
+
+// Helper function for distance calculation (client-side fallback)
+function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371 // Earth's radius in kilometers
+  const dLat = (lat2 - lat1) * Math.PI / 180
+  const dLng = (lng2 - lng1) * Math.PI / 180
+  const a = 
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLng / 2) * Math.sin(dLng / 2)
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  const distance = R * c
+  
+  return distance
+}
+
+/**
+ * Search courts with unified service (mock + real places)
+ */
+export const searchAllCourtsNearMe = async (
+  latitude: number,
+  longitude: number,
+  radiusMiles: number = 10,
+  sport: string = 'all',
+  includeRealPlaces: boolean = true
+): Promise<Court[]> => {
+  // Import the unified service dynamically to avoid circular dependencies
+  try {
+    const { searchAllCourtsNearMe: unifiedSearch } = await import('@/lib/court-search-service')
+    
+    const result = await unifiedSearch(latitude, longitude, radiusMiles, sport, {
+      includeRealPlaces,
+      includeMockData: true,
+      maxResults: 50,
+      sortBy: 'distance'
+    })
+    
+    return result.courts
+    
+  } catch (error) {
+    console.error('Unified search failed, falling back to mock data:', error)
+    // Fallback to mock data only
+    return searchCourtsNearMe(latitude, longitude, radiusMiles, sport)
   }
 }
 
@@ -296,6 +399,8 @@ export const isAuthenticated = (): boolean => {
 const apiClient = {
   getAllCourts,
   searchCourts,
+  searchCourtsNearMe,
+  searchAllCourtsNearMe,
   getCourt,
   bookCourt,
   getCourtAvailability,
