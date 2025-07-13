@@ -234,11 +234,13 @@ export default function CourtReviews({ court, className = '' }: CourtReviewsProp
 export function InlineRating({ 
   rating, 
   userRatingsTotal, 
+  reviewsCount,
   size = 'sm',
   className = '' 
 }: { 
   rating: number
   userRatingsTotal?: number
+  reviewsCount?: number
   size?: 'xs' | 'sm' | 'md' | 'lg'
   className?: string 
 }) {
@@ -255,6 +257,10 @@ export function InlineRating({
     md: 'text-base',
     lg: 'text-lg'
   }[size]
+
+  // Use the most accurate count available
+  // Priority: userRatingsTotal > reviewsCount > fallback to 1 if rating exists
+  const displayCount = userRatingsTotal || reviewsCount || (rating > 0 ? 1 : 0)
 
   return (
     <div className={`flex items-center gap-1 ${className}`}>
@@ -273,9 +279,9 @@ export function InlineRating({
       <span className={`font-medium text-gray-900 ${textSize}`}>
         {rating}
       </span>
-      {userRatingsTotal && (
+      {displayCount > 0 && (
         <span className={`text-gray-500 ${textSize}`}>
-          ({userRatingsTotal})
+          ({displayCount})
         </span>
       )}
     </div>

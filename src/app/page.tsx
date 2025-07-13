@@ -428,15 +428,6 @@ export default function HomePage() {
                         showLoading={true}
                         showSportIcon={true}
                       />
-                      {court.available ? (
-                        <span className="absolute top-3 right-3 bg-secondary-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                          Available
-                        </span>
-                      ) : (
-                        <span className="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                          Booked
-                        </span>
-                      )}
                     </div>
                     <div className="p-6">
                       <div className="flex justify-between items-start mb-3">
@@ -444,6 +435,7 @@ export default function HomePage() {
                         <InlineRating 
                           rating={court.rating} 
                           userRatingsTotal={court.userRatingsTotal}
+                          reviewsCount={court.reviews?.length}
                           size="sm"
                         />
                       </div>

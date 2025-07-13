@@ -128,6 +128,7 @@ export default function CourtDetailsModal({
                         <InlineRating 
                           rating={court.rating} 
                           userRatingsTotal={court.userRatingsTotal}
+                          reviewsCount={court.reviews?.length}
                           size="sm"
                         />
                       </div>
@@ -161,15 +162,6 @@ export default function CourtDetailsModal({
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3">
-                      <span className="text-gray-500">{court.available ? '✅' : '❌'}</span>
-                      <div>
-                        <span className="font-medium text-gray-900">Status:</span>
-                        <span className={`ml-2 ${court.available ? 'text-green-600' : 'text-red-600'}`}>
-                          {court.available ? 'Available' : 'Unavailable'}
-                        </span>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Contact Information */}

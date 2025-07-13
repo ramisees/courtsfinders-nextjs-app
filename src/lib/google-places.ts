@@ -303,7 +303,7 @@ export const convertPlaceToCourt = (
       lng: place.geometry.location.lng
     },
     rating: place.rating || 4.0,
-    userRatingsTotal: details?.user_ratings_total || place.rating ? 1 : 0,
+    userRatingsTotal: details?.user_ratings_total || (details?.reviews?.length) || (place.rating ? 1 : 0),
     reviews: details?.reviews || [],
     pricePerHour: estimatedPrice,
     amenities,
