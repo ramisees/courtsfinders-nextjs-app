@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 interface NavigationProps {
@@ -28,7 +29,7 @@ export default function Navigation({ showMobileMenu = false, onMobileMenuToggle 
   }
 
   const navItems = [
-    { href: '/', label: 'Find Courts', icon: '🔍' },
+    { href: '/#search', label: 'Find Courts', icon: '🔍' },
     { href: '/about', label: 'About', icon: '👥' },
     { href: '/contact', label: 'Contact', icon: '📧' },
     { href: '/support', label: 'Support', icon: '❓' }
@@ -37,6 +38,9 @@ export default function Navigation({ showMobileMenu = false, onMobileMenuToggle 
   const courtCategories = [
     { href: '/courts/tennis', label: 'Tennis Courts', icon: '🎾' },
     { href: '/courts/basketball', label: 'Basketball Courts', icon: '🏀' },
+    { href: '/courts/pickleball', label: 'Pickleball Courts', icon: '🏓' },
+    { href: '/courts/volleyball', label: 'Volleyball Courts', icon: '🏐' },
+    { href: '/courts/racquetball', label: 'Racquetball Courts', icon: '🎯' },
     { href: '/courts/multi-sport', label: 'Multi-Sport', icon: '⚽' }
   ]
 
@@ -46,15 +50,22 @@ export default function Navigation({ showMobileMenu = false, onMobileMenuToggle 
   ]
 
   return (
-    <header className="bg-white shadow-sm border-b sticky top-0 z-50">
+    <header className="bg-dark-900/95 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">CF</span>
+            <div className="flex-shrink-0" style={{ width: '300px', height: '240px' }}>
+              <Image
+                src="/images/logo.png"
+                alt="Courts Finder"
+                width={300}
+                height={240}
+                className="w-full h-full object-contain"
+                priority
+              />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900">Courts Finder</h1>
+            <h1 className="text-2xl font-bold text-white">Courts Finder</h1>
           </Link>
 
           {/* Desktop Navigation */}
@@ -63,8 +74,8 @@ export default function Navigation({ showMobileMenu = false, onMobileMenuToggle 
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-gray-600 hover:text-primary-600 transition-colors font-medium ${
-                  isActive(item.href) ? 'text-primary-600 border-b-2 border-primary-600 pb-1' : ''
+                className={`text-gray-300 hover:text-primary-400 transition-colors font-medium ${
+                  isActive(item.href) ? 'text-primary-400 border-b-2 border-primary-400 pb-1' : ''
                 }`}
               >
                 <span className="mr-1">{item.icon}</span>
@@ -75,18 +86,24 @@ export default function Navigation({ showMobileMenu = false, onMobileMenuToggle 
 
           {/* Desktop Action Buttons */}
           <div className="hidden md:flex space-x-3">
-            <button className="px-4 py-2 text-primary-600 border border-primary-600 rounded-lg hover:bg-primary-50 transition-colors font-medium">
+            <Link 
+              href="/login"
+              className="px-4 py-2 text-primary-400 border border-primary-400 rounded-lg hover:bg-primary-400/10 transition-colors font-medium"
+            >
               Sign In
-            </button>
-            <button className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium">
+            </Link>
+            <Link 
+              href="/signup"
+              className="px-4 py-2 bg-primary-500 text-dark-900 rounded-lg hover:bg-primary-400 transition-colors font-medium"
+            >
               Sign Up
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
             aria-label="Toggle mobile menu"
           >
             <svg
@@ -109,7 +126,7 @@ export default function Navigation({ showMobileMenu = false, onMobileMenuToggle 
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 py-4">
+          <div className="md:hidden border-t border-gray-800 py-4">
             <div className="space-y-1">
               {/* Main Navigation */}
               <div className="mb-4">
@@ -123,8 +140,8 @@ export default function Navigation({ showMobileMenu = false, onMobileMenuToggle 
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                       isActive(item.href)
-                        ? 'text-primary-600 bg-primary-50'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                        ? 'text-primary-400 bg-primary-400/10'
+                        : 'text-gray-300 hover:text-white hover:bg-gray-800'
                     }`}
                   >
                     <span className="mr-2">{item.icon}</span>
@@ -145,8 +162,8 @@ export default function Navigation({ showMobileMenu = false, onMobileMenuToggle 
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                       isActive(item.href)
-                        ? 'text-primary-600 bg-primary-50'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                        ? 'text-primary-400 bg-primary-400/10'
+                        : 'text-gray-300 hover:text-white hover:bg-gray-800'
                     }`}
                   >
                     <span className="mr-2">{item.icon}</span>
@@ -167,8 +184,8 @@ export default function Navigation({ showMobileMenu = false, onMobileMenuToggle 
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                       isActive(item.href)
-                        ? 'text-primary-600 bg-primary-50'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                        ? 'text-primary-400 bg-primary-400/10'
+                        : 'text-gray-300 hover:text-white hover:bg-gray-800'
                     }`}
                   >
                     <span className="mr-2">{item.icon}</span>
@@ -178,13 +195,21 @@ export default function Navigation({ showMobileMenu = false, onMobileMenuToggle 
               </div>
 
               {/* Mobile Action Buttons */}
-              <div className="pt-4 border-t border-gray-200 space-y-2">
-                <button className="w-full px-4 py-2 text-primary-600 border border-primary-600 rounded-lg hover:bg-primary-50 transition-colors font-medium">
+              <div className="pt-4 border-t border-gray-800 space-y-2">
+                <Link 
+                  href="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full block text-center px-4 py-2 text-primary-400 border border-primary-400 rounded-lg hover:bg-primary-400/10 transition-colors font-medium"
+                >
                   Sign In
-                </button>
-                <button className="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium">
+                </Link>
+                <Link 
+                  href="/signup"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full block text-center px-4 py-2 bg-primary-500 text-dark-900 rounded-lg hover:bg-primary-400 transition-colors font-medium"
+                >
                   Sign Up
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -208,7 +233,7 @@ export function FooterNavigation() {
               </div>
               <span className="text-xl font-bold">Courts Finder</span>
             </Link>
-            <p className="text-gray-400">Find and book the perfect court for your game.</p>
+            <p className="text-gray-400">Find and play at the perfect court for your game.</p>
           </div>
 
           {/* Courts */}
@@ -223,6 +248,21 @@ export function FooterNavigation() {
               <li>
                 <Link href="/courts/basketball" className="hover:text-white transition-colors">
                   🏀 Basketball Courts
+                </Link>
+              </li>
+              <li>
+                <Link href="/courts/pickleball" className="hover:text-white transition-colors">
+                  🏓 Pickleball Courts
+                </Link>
+              </li>
+              <li>
+                <Link href="/courts/volleyball" className="hover:text-white transition-colors">
+                  🏐 Volleyball Courts
+                </Link>
+              </li>
+              <li>
+                <Link href="/courts/racquetball" className="hover:text-white transition-colors">
+                  🎯 Racquetball Courts
                 </Link>
               </li>
               <li>

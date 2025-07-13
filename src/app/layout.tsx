@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Courts Finder - Find Tennis & Basketball Courts Near You',
-  description: 'Discover and book tennis courts, basketball courts, and other sports facilities in your area. Find the perfect court for your game.',
+  description: 'Discover and access tennis courts, basketball courts, and other sports facilities in your area. Find the perfect court for your game.',
   keywords: 'tennis courts, basketball courts, sports facilities, court booking, sports venues',
 }
 

@@ -67,7 +67,7 @@ export default function ContactPage() {
                   >
                     <option value="" className="bg-dark-800 text-white">Select a subject</option>
                     <option value="general" className="bg-dark-800 text-white">General Inquiry</option>
-                    <option value="booking" className="bg-dark-800 text-white">Court Access Support</option>
+                    <option value="booking" className="bg-dark-800 text-white">Booking Support</option>
                     <option value="court-owner" className="bg-dark-800 text-white">List My Court</option>
                     <option value="technical" className="bg-dark-800 text-white">Technical Issue</option>
                     <option value="partnership" className="bg-dark-800 text-white">Partnership</option>
@@ -190,7 +190,7 @@ export default function ContactPage() {
                 className="h-16 w-auto mb-4"
               />
               <p className="text-gray-400 max-w-md">
-                Find and play at the perfect sports court for your next game. 
+                Find and book the perfect sports court for your next game. 
                 From tennis to basketball, we connect you with premium venues worldwide.
               </p>
             </div>

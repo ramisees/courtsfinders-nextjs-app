@@ -110,18 +110,46 @@ export const searchAllCourtsNearMe = async (
   // Remove duplicates (in case mock data overlaps with real data)
   const uniqueCourts = removeDuplicateCourts(allCourts)
 
+  // **FIX: Add radius filtering to ensure all courts are within the specified distance**
+  const radiusKm = radiusMiles * 1.60934
+  const filteredCourts = uniqueCourts.filter(court => {
+    if (!court.coordinates) return false
+    
+    const distance = (court as any).distance || calculateDistance(
+      latitude, 
+      longitude, 
+      court.coordinates.lat, 
+      court.coordinates.lng
+    )
+    
+    // Store distance on court object if not already present
+    if (!(court as any).distance) {
+      (court as any).distance = distance
+    }
+    
+    const isWithinRadius = distance <= radiusKm
+    
+    if (!isWithinRadius) {
+      console.log(`🚫 Filtering out "${court.name}" - ${(distance / 1.60934).toFixed(1)} miles (outside ${radiusMiles} mile radius)`)
+    }
+    
+    return isWithinRadius
+  })
+
+  console.log(`📍 Distance filtering: ${uniqueCourts.length} → ${filteredCourts.length} courts (within ${radiusMiles} miles)`)
+
   // Sort results
-  let sortedCourts = uniqueCourts
+  let sortedCourts = filteredCourts
   if (options.sortBy === 'distance') {
-    sortedCourts = uniqueCourts.sort((a, b) => {
+    sortedCourts = filteredCourts.sort((a, b) => {
       const distanceA = (a as any).distance || calculateDistance(latitude, longitude, a.coordinates?.lat || 0, a.coordinates?.lng || 0)
       const distanceB = (b as any).distance || calculateDistance(latitude, longitude, b.coordinates?.lat || 0, b.coordinates?.lng || 0)
       return distanceA - distanceB
     })
   } else if (options.sortBy === 'rating') {
-    sortedCourts = uniqueCourts.sort((a, b) => (b.rating || 0) - (a.rating || 0))
+    sortedCourts = filteredCourts.sort((a, b) => (b.rating || 0) - (a.rating || 0))
   } else if (options.sortBy === 'price') {
-    sortedCourts = uniqueCourts.sort((a, b) => (a.pricePerHour || 0) - (b.pricePerHour || 0))
+    sortedCourts = filteredCourts.sort((a, b) => (a.pricePerHour || 0) - (b.pricePerHour || 0))
   }
 
   // Limit results

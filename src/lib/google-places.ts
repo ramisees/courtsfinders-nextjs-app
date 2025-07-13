@@ -31,6 +31,21 @@ export const SPORT_PLACE_TYPES = {
     'sports_club',
     'park'
   ],
+  volleyball: [
+    'sports_complex',
+    'recreation_center',
+    'sports_club',
+    'gym',
+    'park',
+    'beach'
+  ],
+  racquetball: [
+    'sports_complex',
+    'recreation_center',
+    'sports_club',
+    'gym',
+    'country_club'
+  ],
   'multi-sport': [
     'sports_complex',
     'recreation_center',
@@ -46,7 +61,8 @@ export const SPORT_PLACE_TYPES = {
     'sports_club',
     'gym',
     'country_club',
-    'park'
+    'park',
+    'beach'
   ]
 } as const
 
@@ -55,8 +71,10 @@ export const SPORT_KEYWORDS = {
   tennis: ['tennis', 'racquet', 'court'],
   basketball: ['basketball', 'court', 'hoop'],
   pickleball: ['pickleball', 'paddle', 'court'],
+  volleyball: ['volleyball', 'court', 'net', 'beach', 'sand'],
+  racquetball: ['racquetball', 'racquet', 'squash', 'court'],
   'multi-sport': ['sports', 'athletic', 'recreation'],
-  all: ['tennis', 'basketball', 'pickleball', 'sports', 'court', 'recreation']
+  all: ['tennis', 'basketball', 'pickleball', 'volleyball', 'racquetball', 'sports', 'court', 'recreation']
 } as const
 
 export interface GooglePlace {

@@ -23,7 +23,39 @@ export const northCarolinaCourts: Court[] = [
     image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=400&h=300&fit=crop",
     phone: "(828) 555-0123",
     website: "https://downtowntennis.com",
-    description: "Professional tennis facility with 6 hard courts and pro shop."
+    description: "Professional tennis facility with 6 hard courts and pro shop.",
+    reviews: [
+      {
+        author_name: "Sarah M.",
+        author_url: "",
+        language: "en",
+        profile_photo_url: "",
+        rating: 5,
+        relative_time_description: "2 weeks ago",
+        text: "Excellent courts and well-maintained facilities. The pro shop has everything you need and the staff is very knowledgeable. Court lighting is great for evening play.",
+        time: 1704067200000 // 2 weeks ago
+      },
+      {
+        author_name: "Mike Rodriguez",
+        author_url: "",
+        language: "en", 
+        profile_photo_url: "",
+        rating: 4,
+        relative_time_description: "1 month ago",
+        text: "Good courts overall. Sometimes booking can be challenging during peak hours. The surface is in good condition and parking is convenient.",
+        time: 1701475200000 // 1 month ago
+      },
+      {
+        author_name: "Jennifer L.",
+        author_url: "",
+        language: "en",
+        profile_photo_url: "",
+        rating: 5,
+        relative_time_description: "3 weeks ago", 
+        text: "Love this place! Great for both casual play and lessons. The instructors are professional and the courts are always clean.",
+        time: 1703462400000 // 3 weeks ago
+      }
+    ]
   },
   {
     id: 2,
@@ -41,7 +73,29 @@ export const northCarolinaCourts: Court[] = [
     image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=300&fit=crop",
     phone: "(828) 555-0456",
     website: null,
-    description: "Free outdoor basketball court available to the public."
+    description: "Free outdoor basketball court available to the public.",
+    reviews: [
+      {
+        author_name: "Alex Thompson",
+        author_url: "",
+        language: "en",
+        profile_photo_url: "",
+        rating: 4,
+        relative_time_description: "1 week ago",
+        text: "Great free court for pickup games. Gets busy on weekends but usually can find a game. Court surface is decent, some cracks but playable.",
+        time: 1704672000000 // 1 week ago
+      },
+      {
+        author_name: "Carlos V.",
+        author_url: "",
+        language: "en",
+        profile_photo_url: "",
+        rating: 4,
+        relative_time_description: "2 weeks ago",
+        text: "Perfect for neighborhood pickup games. Lighting could be better but it's free and well-located. Good community vibe here.",
+        time: 1704067200000 // 2 weeks ago
+      }
+    ]
   },
   {
     id: 3,
@@ -1752,5 +1806,183 @@ export const northCarolinaCourts: Court[] = [
       sunday: { open: "6:00", close: "dusk" }
     },
     tags: ["community", "beginner_friendly", "belmont", "affordable"]
+  },
+
+  // Volleyball Courts
+  {
+    id: 10001,
+    name: "Coastal Volleyball Club",
+    sport: "volleyball",
+    address: "2100 Beach Road, Wilmington, NC 28401",
+    coordinates: { lat: 34.2257, lng: -77.9447 },
+    rating: 4.6,
+    pricePerHour: 30,
+    userRatingsTotal: 127,
+    amenities: ["parking", "restrooms", "lighting", "sand_courts", "changing_rooms"],
+    surface: "sand",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop",
+    phone: "(910) 555-0190",
+    website: "https://coastalvolleyball.com",
+    description: "Premier beach volleyball facility with 6 sand courts and tournament hosting",
+    capacity: 24,
+    openingHours: {
+      monday: { open: "6:00", close: "22:00" },
+      tuesday: { open: "6:00", close: "22:00" },
+      wednesday: { open: "6:00", close: "22:00" },
+      thursday: { open: "6:00", close: "22:00" },
+      friday: { open: "6:00", close: "23:00" },
+      saturday: { open: "7:00", close: "23:00" },
+      sunday: { open: "7:00", close: "22:00" }
+    },
+    tags: ["beach", "tournament", "professional", "wilmington"]
+  },
+  {
+    id: 10002,
+    name: "Triangle Indoor Volleyball",
+    sport: "volleyball",
+    address: "5201 Capital Blvd, Raleigh, NC 27616",
+    coordinates: { lat: 35.8324, lng: -78.6118 },
+    rating: 4.4,
+    pricePerHour: 35,
+    userRatingsTotal: 89,
+    amenities: ["parking", "restrooms", "air_conditioning", "concessions", "equipment_rental"],
+    surface: "hardwood",
+    indoor: true,
+    available: true,
+    image: "https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=400&h=300&fit=crop",
+    phone: "(919) 555-0275",
+    website: "https://trianglevolleyball.com",
+    description: "Climate-controlled indoor volleyball courts with professional flooring",
+    capacity: 32,
+    openingHours: {
+      monday: { open: "5:00", close: "23:00" },
+      tuesday: { open: "5:00", close: "23:00" },
+      wednesday: { open: "5:00", close: "23:00" },
+      thursday: { open: "5:00", close: "23:00" },
+      friday: { open: "5:00", close: "24:00" },
+      saturday: { open: "7:00", close: "24:00" },
+      sunday: { open: "7:00", close: "23:00" }
+    },
+    tags: ["indoor", "climate_controlled", "raleigh", "professional"]
+  },
+  {
+    id: 10003,
+    name: "UNCC Volleyball Complex",
+    sport: "volleyball",
+    address: "9201 University City Blvd, Charlotte, NC 28223",
+    coordinates: { lat: 35.3074, lng: -80.7353 },
+    rating: 4.3,
+    pricePerHour: 25,
+    userRatingsTotal: 156,
+    amenities: ["parking", "restrooms", "student_discounts", "coaching_available"],
+    surface: "hardwood",
+    indoor: true,
+    available: true,
+    image: "https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=400&h=300&fit=crop",
+    phone: "(704) 555-0823",
+    website: "https://uncc.edu/recreation",
+    description: "University volleyball courts available for public rental",
+    capacity: 24,
+    openingHours: {
+      monday: { open: "6:00", close: "22:00" },
+      tuesday: { open: "6:00", close: "22:00" },
+      wednesday: { open: "6:00", close: "22:00" },
+      thursday: { open: "6:00", close: "22:00" },
+      friday: { open: "6:00", close: "21:00" },
+      saturday: { open: "8:00", close: "20:00" },
+      sunday: { open: "8:00", close: "22:00" }
+    },
+    tags: ["university", "student_friendly", "charlotte", "coaching"]
+  },
+
+  // Racquetball Courts
+  {
+    id: 10004,
+    name: "Elite Racquet Club",
+    sport: "racquetball",
+    address: "1450 Kildaire Farm Rd, Cary, NC 27511",
+    coordinates: { lat: 35.7596, lng: -78.7633 },
+    rating: 4.7,
+    pricePerHour: 40,
+    userRatingsTotal: 203,
+    amenities: ["parking", "restrooms", "pro_shop", "locker_rooms", "equipment_rental", "coaching"],
+    surface: "hardwood",
+    indoor: true,
+    available: true,
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+    phone: "(919) 555-0934",
+    website: "https://eliteracquetclub.com",
+    description: "Premier racquetball facility with 8 courts and professional instruction",
+    capacity: 16,
+    openingHours: {
+      monday: { open: "5:00", close: "23:00" },
+      tuesday: { open: "5:00", close: "23:00" },
+      wednesday: { open: "5:00", close: "23:00" },
+      thursday: { open: "5:00", close: "23:00" },
+      friday: { open: "5:00", close: "22:00" },
+      saturday: { open: "6:00", close: "22:00" },
+      sunday: { open: "7:00", close: "22:00" }
+    },
+    tags: ["premium", "professional", "cary", "coaching"]
+  },
+  {
+    id: 10005,
+    name: "Greensboro Athletic Club",
+    sport: "racquetball",
+    address: "3121 High Point Rd, Greensboro, NC 27403",
+    coordinates: { lat: 36.0459, lng: -79.8545 },
+    rating: 4.2,
+    pricePerHour: 28,
+    userRatingsTotal: 78,
+    amenities: ["parking", "restrooms", "fitness_center", "locker_rooms", "sauna"],
+    surface: "hardwood",
+    indoor: true,
+    available: true,
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=300&fit=crop",
+    phone: "(336) 555-0567",
+    website: "https://greensboroac.com",
+    description: "Full-service athletic club with 4 racquetball courts",
+    capacity: 8,
+    openingHours: {
+      monday: { open: "5:00", close: "22:00" },
+      tuesday: { open: "5:00", close: "22:00" },
+      wednesday: { open: "5:00", close: "22:00" },
+      thursday: { open: "5:00", close: "22:00" },
+      friday: { open: "5:00", close: "21:00" },
+      saturday: { open: "6:00", close: "20:00" },
+      sunday: { open: "7:00", close: "21:00" }
+    },
+    tags: ["athletic_club", "fitness", "greensboro", "full_service"]
+  },
+  {
+    id: 10006,
+    name: "Winston-Salem Racquet Center",
+    sport: "racquetball",
+    address: "890 Peters Creek Pkwy, Winston-Salem, NC 27103",
+    coordinates: { lat: 36.1349, lng: -80.2773 },
+    rating: 4.1,
+    pricePerHour: 22,
+    userRatingsTotal: 45,
+    amenities: ["parking", "restrooms", "equipment_rental", "beginner_lessons"],
+    surface: "hardwood",
+    indoor: true,
+    available: true,
+    image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+    phone: "(336) 555-0892",
+    website: "https://wsracquet.com",
+    description: "Community racquetball center with affordable rates and beginner programs",
+    capacity: 12,
+    openingHours: {
+      monday: { open: "6:00", close: "21:00" },
+      tuesday: { open: "6:00", close: "21:00" },
+      wednesday: { open: "6:00", close: "21:00" },
+      thursday: { open: "6:00", close: "21:00" },
+      friday: { open: "6:00", close: "20:00" },
+      saturday: { open: "7:00", close: "19:00" },
+      sunday: { open: "8:00", close: "20:00" }
+    },
+    tags: ["community", "affordable", "winston_salem", "beginner_friendly"]
   }
 ]

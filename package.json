@@ -13,9 +13,14 @@
     "test:coverage": "jest --coverage",
     "test:api": "node test-api-fixed.js",
     "test:all": "npm run lint && npm run test:coverage",
-    "check-config": "node -e \"require('dotenv').config({path:'.env.local'}); console.log('Google API Key:', process.env.GOOGLE_PLACES_API_KEY ? '✅ Configured' : '❌ Missing')\""
+    "check-config": "node -e \"require('dotenv').config({path:'.env.local'}); console.log('Google API Key:', process.env.GOOGLE_PLACES_API_KEY ? '✅ Configured' : '❌ Missing')\"",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel",
+    "analyze": "ANALYZE=true npm run build",
+    "clean": "rimraf .next out"
   },
   "dependencies": {
+    "framer-motion": "^12.23.3",
     "next": "15.3.5",
     "react": "^18",
     "react-dom": "^18"

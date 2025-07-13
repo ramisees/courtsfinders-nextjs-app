@@ -127,8 +127,8 @@ export default function FindNearMe({
   return (
     <div className={`bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200 ${className}`}>
       <div className="flex items-center gap-3 mb-4">
-        <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-          <span className="text-white text-lg">📍</span>
+        <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
+          <span className="text-black text-lg">📍</span>
         </div>
         <div>
           <h3 className="text-lg font-semibold text-gray-900">Find Courts Near Me</h3>
@@ -137,57 +137,10 @@ export default function FindNearMe({
       </div>
 
       <div className="space-y-4">
-        {/* Data Source Selection */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Data Sources
-          </label>
-          <div className="bg-gray-50 p-3 rounded-lg border">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="realPlaces"
-                  checked={useRealPlaces && (searchCapabilities?.realPlaces?.available || false)}
-                  onChange={(e) => setUseRealPlaces(e.target.checked)}
-                  disabled={!(searchCapabilities?.realPlaces?.available) || isLoading}
-                  className="rounded border-gray-300"
-                />
-                <label htmlFor="realPlaces" className="text-sm font-medium">
-                  Real Places (Google Places API)
-                </label>
-              </div>
-              <span className={`text-xs px-2 py-1 rounded ${
-                searchCapabilities?.realPlaces?.available 
-                  ? 'bg-green-100 text-green-800' 
-                  : 'bg-red-100 text-red-800'
-              }`}>
-                {searchCapabilities?.realPlaces?.available ? 'Available' : 'Not Configured'}
-              </span>
-            </div>
-            {!(searchCapabilities?.realPlaces?.available) && (
-              <p className="text-xs text-gray-600">
-                Google Places API key required for real-time data
-              </p>
-            )}
-            <div className="flex items-center gap-2 mt-2">
-              <input
-                type="checkbox"
-                id="mockData"
-                checked={true}
-                disabled={true}
-                className="rounded border-gray-300"
-              />
-              <label htmlFor="mockData" className="text-sm font-medium">
-                Mock Data (Always included)
-              </label>
-            </div>
-          </div>
-        </div>
 
-        {/* Radius Selection */}
+
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             Search Radius
           </label>
           <div className="flex flex-wrap gap-2">
@@ -198,8 +151,8 @@ export default function FindNearMe({
                 disabled={isLoading}
                 className={`px-4 py-2 rounded-lg border font-medium transition-colors disabled:opacity-50 ${
                   selectedRadius === option.value
-                    ? 'bg-blue-600 text-white border-blue-600'
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-blue-400 hover:bg-blue-50'
+                    ? 'bg-yellow-400 text-black border-yellow-400'
+                    : 'bg-white text-gray-700 border-gray-300 hover:border-yellow-400 hover:bg-yellow-50'
                 }`}
               >
                 {option.label}
@@ -212,17 +165,17 @@ export default function FindNearMe({
         <button
           onClick={handleFindNearMe}
           disabled={isLoading || !isClient || !isGeolocationSupported()}
-          className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full bg-yellow-400 text-black py-3 px-6 rounded-lg font-semibold hover:bg-yellow-300 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {isLoading ? (
             <>
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
               {lastLocation ? 'Updating...' : 'Getting Location...'}
             </>
           ) : (
             <>
               <span>🎯</span>
-              Find Courts Near Me
+              Use My Location
             </>
           )}
         </button>
@@ -235,31 +188,17 @@ export default function FindNearMe({
           </div>
         )}
 
-        {/* Last Location Info */}
-        {lastLocation && (
-          <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">
-            <div className="flex items-center gap-2 mb-1">
-              <span>📍</span>
-              <span className="font-medium">Last location:</span>
-            </div>
-            <div className="pl-5">
-              <div>Lat: {lastLocation.latitude.toFixed(4)}, Lng: {lastLocation.longitude.toFixed(4)}</div>
-              {lastLocation.accuracy && (
-                <div>Accuracy: ±{Math.round(lastLocation.accuracy)}m</div>
-              )}
-            </div>
-          </div>
-        )}
+
 
         {/* Tips */}
         {isClient && (
-          <div className="text-xs text-gray-600 space-y-1">
+          <div className="text-xs text-gray-300 space-y-1">
             <div className="flex items-start gap-2">
-              <span className="text-blue-600">💡</span>
+              <span className="text-yellow-400">💡</span>
               <span><strong>Tip:</strong> Allow location access when prompted for the best results</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-green-600">🔒</span>
+              <span className="text-green-400">🔒</span>
               <span><strong>Privacy:</strong> Your location is only used for this search and not stored</span>
             </div>
           </div>

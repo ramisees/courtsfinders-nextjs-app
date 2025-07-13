@@ -57,18 +57,18 @@ export default function TermsPage() {
                 <li>You must keep your contact information up to date</li>
               </ul>
 
-              <h2 className="text-white font-bold text-xl mb-4">Court Access and Payments</h2>
+              <h2 className="text-white font-bold text-xl mb-4">Booking and Payments</h2>
               <h3 className="text-primary-400 font-semibold text-lg mb-3">Reservations</h3>
               <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li>All court access is subject to availability and confirmation</li>
-                <li>Court owners have the right to accept or decline access requests</li>
-                <li>You must arrive on time for your scheduled court time</li>
+                <li>All bookings are subject to availability and confirmation</li>
+                <li>Court owners have the right to accept or decline booking requests</li>
+                <li>You must arrive on time for your booking</li>
                 <li>Late arrivals may result in shortened playing time or cancellation</li>
               </ul>
 
               <h3 className="text-primary-400 font-semibold text-lg mb-3">Payment Terms</h3>
               <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li>Payment is required at the time of court reservation</li>
+                <li>Payment is required at the time of booking</li>
                 <li>All prices are displayed in USD unless otherwise specified</li>
                 <li>We use third-party payment processors for secure transactions</li>
                 <li>Additional fees may apply (processing, taxes, etc.)</li>
@@ -76,9 +76,9 @@ export default function TermsPage() {
 
               <h3 className="text-primary-400 font-semibold text-lg mb-3">Cancellation Policy</h3>
               <ul className="list-disc pl-6 mb-6 space-y-2">
-                <li>You may cancel reservations up to 24 hours before the scheduled time</li>
+                <li>You may cancel bookings up to 24 hours before the scheduled time</li>
                 <li>Cancellations made within 24 hours may incur fees</li>
-                <li>No-shows will be charged the full reservation amount</li>
+                <li>No-shows will be charged the full booking amount</li>
                 <li>Refunds are processed according to our refund policy</li>
               </ul>
 
@@ -99,7 +99,7 @@ export default function TermsPage() {
               <ul className="list-disc pl-6 mb-6 space-y-2">
                 <li>Provide accurate information about their facilities</li>
                 <li>Maintain their courts in safe, playable condition</li>
-                <li>Honor confirmed reservations</li>
+                <li>Honor confirmed bookings</li>
                 <li>Provide reasonable customer service to users</li>
                 <li>Comply with all applicable laws and regulations</li>
               </ul>
@@ -190,7 +190,7 @@ export default function TermsPage() {
                 className="h-16 w-auto mb-4"
               />
               <p className="text-gray-400 max-w-md">
-                Find and access the perfect sports court for your next game. 
+                Find and book the perfect sports court for your next game. 
                 From tennis to basketball, we connect you with premium venues worldwide.
               </p>
             </div>
