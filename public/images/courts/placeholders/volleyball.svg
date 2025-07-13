@@ -1,0 +1,38 @@
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="300" height="200" fill="#7c3aed"/>
+  
+  <!-- Volleyball Court -->
+  <rect x="50" y="60" width="200" height="80" fill="#fde047" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Center line -->
+  <line x1="150" y1="60" x2="150" y2="140" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Attack lines -->
+  <line x1="90" y1="60" x2="90" y2="140" stroke="#ffffff" stroke-width="1"/>
+  <line x1="210" y1="60" x2="210" y2="140" stroke="#ffffff" stroke-width="1"/>
+  
+  <!-- Net -->
+  <line x1="150" y1="40" x2="150" y2="60" stroke="#ffffff" stroke-width="3"/>
+  <rect x="148" y="40" width="4" height="20" fill="#f3f4f6"/>
+  
+  <!-- Net pattern -->
+  <g stroke="#9ca3af" stroke-width="0.5">
+    <line x1="145" y1="42" x2="155" y2="42"/>
+    <line x1="145" y1="46" x2="155" y2="46"/>
+    <line x1="145" y1="50" x2="155" y2="50"/>
+    <line x1="145" y1="54" x2="155" y2="54"/>
+    <line x1="145" y1="58" x2="155" y2="58"/>
+    <line x1="147" y1="40" x2="147" y2="60"/>
+    <line x1="153" y1="40" x2="153" y2="60"/>
+  </g>
+  
+  <!-- Volleyball -->
+  <circle cx="120" cy="90" r="8" fill="#ffffff"/>
+  <path d="M 112 85 Q 120 83 128 85" stroke="#000000" stroke-width="1" fill="none"/>
+  <path d="M 112 95 Q 120 97 128 95" stroke="#000000" stroke-width="1" fill="none"/>
+  <path d="M 115 82 Q 120 90 125 98" stroke="#000000" stroke-width="1" fill="none"/>
+  
+  <!-- Text -->
+  <text x="150" y="185" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Volleyball Court</text>
+</svg>

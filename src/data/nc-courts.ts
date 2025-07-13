@@ -356,7 +356,7 @@ export const northCarolinaCourts: Court[] = [
 
   // Tennis Courts - Durham
   {
-    id: 300,
+    id: 2000,
     name: "Duke University Tennis Center",
     sport: "tennis",
     address: "201 Science Dr, Durham, NC 27708",
@@ -375,7 +375,7 @@ export const northCarolinaCourts: Court[] = [
     tags: ["university", "ncaa", "prestigious"]
   },
   {
-    id: 301,
+    id: 2002,
     name: "Forest Hills Park Tennis Courts",
     sport: "tennis",
     address: "1420 S Alston Ave, Durham, NC 27713",
@@ -396,7 +396,7 @@ export const northCarolinaCourts: Court[] = [
 
   // Basketball Courts - Durham
   {
-    id: 302,
+    id: 2004,
     name: "Lyon Park Basketball Courts",
     sport: "basketball",
     address: "1309 S Alston Ave, Durham, NC 27713",
@@ -415,7 +415,7 @@ export const northCarolinaCourts: Court[] = [
     tags: ["free", "active_community", "local_favorite"]
   },
   {
-    id: 303,
+    id: 2006,
     name: "Cameron Indoor Stadium Practice Courts",
     sport: "basketball",
     address: "120 Science Dr, Durham, NC 27708",
@@ -440,7 +440,7 @@ export const northCarolinaCourts: Court[] = [
 
   // Tennis Courts - Greensboro
   {
-    id: 400,
+    id: 2008,
     name: "Greensboro Tennis Club",
     sport: "tennis",
     address: "4213 Northwood Dr, Greensboro, NC 27455",
@@ -459,7 +459,7 @@ export const northCarolinaCourts: Court[] = [
     tags: ["established", "comprehensive", "programs"]
   },
   {
-    id: 401,
+    id: 2010,
     name: "UNCG Tennis Complex",
     sport: "tennis",
     address: "1408 Walker Ave, Greensboro, NC 27412",
@@ -480,7 +480,7 @@ export const northCarolinaCourts: Court[] = [
 
   // Basketball Courts - Greensboro
   {
-    id: 402,
+    id: 2012,
     name: "Barber Park Basketball Courts",
     sport: "basketball",
     address: "1500 Barber Park Dr, Greensboro, NC 27408",
@@ -505,7 +505,7 @@ export const northCarolinaCourts: Court[] = [
 
   // Tennis Courts - Winston-Salem
   {
-    id: 500,
+    id: 2014,
     name: "Tanglewood Park Tennis Center",
     sport: "tennis",
     address: "4061 Clemmons Rd, Clemmons, NC 27012",
@@ -524,7 +524,7 @@ export const northCarolinaCourts: Court[] = [
     tags: ["scenic", "park_setting", "beautiful"]
   },
   {
-    id: 501,
+    id: 2016,
     name: "Wake Forest University Tennis Complex",
     sport: "tennis",
     address: "1834 Wake Forest Rd, Winston-Salem, NC 27106",
@@ -545,7 +545,7 @@ export const northCarolinaCourts: Court[] = [
 
   // Basketball Courts - Winston-Salem
   {
-    id: 502,
+    id: 2018,
     name: "Washington Park Basketball Courts",
     sport: "basketball",
     address: "840 N Highland Ave, Winston-Salem, NC 27101",
@@ -569,7 +569,7 @@ export const northCarolinaCourts: Court[] = [
   // ================================
 
   {
-    id: 600,
+    id: 2020,
     name: "Asheville Racquet Club",
     sport: "tennis",
     address: "114 Racquet Club Rd, Asheville, NC 28803",
@@ -588,7 +588,7 @@ export const northCarolinaCourts: Court[] = [
     tags: ["mountain_views", "scenic", "blue_ridge"]
   },
   {
-    id: 601,
+    id: 2022,
     name: "UNCA Justice Center Courts",
     sport: "basketball",
     address: "1 University Heights, Asheville, NC 28804",
@@ -612,7 +612,7 @@ export const northCarolinaCourts: Court[] = [
   // ================================
 
   {
-    id: 700,
+    id: 2024,
     name: "Wilmington Tennis Center",
     sport: "tennis",
     address: "3901 Middle Sound Loop Rd, Wilmington, NC 28411",
@@ -631,7 +631,7 @@ export const northCarolinaCourts: Court[] = [
     tags: ["coastal", "ocean_breeze", "year_round"]
   },
   {
-    id: 701,
+    id: 2026,
     name: "UNCW Hawks Nest Courts",
     sport: "basketball",
     address: "601 S College Rd, Wilmington, NC 28403",
@@ -675,7 +675,7 @@ export const northCarolinaCourts: Court[] = [
     tags: ["dedicated", "leagues", "tournaments"]
   },
   {
-    id: 801,
+    id: 2028,
     name: "Charlotte Pickleball Courts",
     sport: "pickleball",
     address: "5855 Brookshire Blvd, Charlotte, NC 28216",
@@ -694,7 +694,7 @@ export const northCarolinaCourts: Court[] = [
     tags: ["new", "beginner_friendly", "open_play"]
   },
   {
-    id: 1055,
+    id: 2031,
     name: "Reedy Creek Park Pickleball Courts",
     sport: "pickleball",
     address: "2900 Rocky River Rd, Charlotte, NC 28215",
@@ -722,7 +722,7 @@ export const northCarolinaCourts: Court[] = [
     tags: ["public", "park", "charlotte", "trails"]
   },
   {
-    id: 1056,
+    id: 2033,
     name: "SouthPark Pickleball Club",
     sport: "pickleball",
     address: "6401 Carmel Rd, Charlotte, NC 28226",
@@ -750,7 +750,435 @@ export const northCarolinaCourts: Court[] = [
     tags: ["premium", "southpark", "lessons", "tournaments", "charlotte"]
   },
   {
-    id: 1057,
+    id: 2035,
+    name: "University City Pickleball Courts",
+    sport: "pickleball",
+    address: "8800 University City Blvd, Charlotte, NC 28223",
+    coordinates: { lat: 35.3089, lng: -80.7345 },
+    rating: 4.2,
+    pricePerHour: 8,
+    amenities: ["parking", "restrooms", "lighting", "university_access"],
+    surface: "concrete",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop",
+    phone: "(704) 687-8622",
+    website: "https://charlotte.gov/parks",
+    description: "Community pickleball courts near UNC Charlotte campus",
+    capacity: 12,
+    openingHours: {
+      monday: { open: "6:00", close: "21:00" },
+      tuesday: { open: "6:00", close: "21:00" },
+      wednesday: { open: "6:00", close: "21:00" },
+      thursday: { open: "6:00", close: "21:00" },
+      friday: { open: "6:00", close: "21:00" },
+      saturday: { open: "8:00", close: "20:00" },
+      sunday: { open: "8:00", close: "20:00" }
+    },
+    tags: ["university", "community", "charlotte", "affordable"]
+  },
+
+  // ================================
+  // DURHAM AREA COURTS
+  // ================================
+
+  // Tennis Courts - Durham
+  {
+    id: 2001,
+    name: "Duke University Tennis Center",
+    sport: "tennis",
+    address: "201 Science Dr, Durham, NC 27708",
+    coordinates: { lat: 36.0014, lng: -78.9382 },
+    rating: 4.7,
+    pricePerHour: 30,
+    amenities: ["parking", "restrooms", "lighting", "university_access", "tournaments"],
+    surface: "hard",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop",
+    phone: "(919) 684-2121",
+    website: "https://goduke.com",
+    description: "NCAA Division I tennis facility with public access hours",
+    capacity: 20,
+    tags: ["university", "ncaa", "prestigious"]
+  },
+  {
+    id: 2003,
+    name: "Forest Hills Park Tennis Courts",
+    sport: "tennis",
+    address: "1420 S Alston Ave, Durham, NC 27713",
+    coordinates: { lat: 35.9634, lng: -78.9287 },
+    rating: 4.3,
+    pricePerHour: 15,
+    amenities: ["parking", "restrooms", "lighting", "affordable"],
+    surface: "hard",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=300&h=200&fit=crop",
+    phone: "(919) 560-4355",
+    website: "https://durhamnc.gov/parks",
+    description: "Community tennis courts in well-maintained Forest Hills Park",
+    capacity: 8,
+    tags: ["affordable", "community", "well_maintained"]
+  },
+
+  // Basketball Courts - Durham
+  {
+    id: 2005,
+    name: "Lyon Park Basketball Courts",
+    sport: "basketball",
+    address: "1309 S Alston Ave, Durham, NC 27713",
+    coordinates: { lat: 35.9598, lng: -78.9301 },
+    rating: 4.1,
+    pricePerHour: 0,
+    amenities: ["parking", "restrooms", "outdoor", "free", "community"],
+    surface: "concrete",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=300&h=200&fit=crop",
+    phone: "(919) 560-4355",
+    website: "https://durhamnc.gov/parks",
+    description: "Active community basketball courts popular with local players",
+    capacity: 12,
+    tags: ["free", "active_community", "local_favorite"]
+  },
+  {
+    id: 2007,
+    name: "Cameron Indoor Stadium Practice Courts",
+    sport: "basketball",
+    address: "120 Science Dr, Durham, NC 27708",
+    coordinates: { lat: 36.0014, lng: -78.9402 },
+    rating: 4.9,
+    pricePerHour: 100,
+    amenities: ["parking", "restrooms", "lighting", "historic", "premium"],
+    surface: "hardwood",
+    indoor: true,
+    available: false,
+    image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=300&h=200&fit=crop",
+    phone: "(919) 684-2121",
+    website: "https://goduke.com",
+    description: "Historic practice facility adjacent to legendary Cameron Indoor Stadium",
+    capacity: 10,
+    tags: ["historic", "legendary", "premium"]
+  },
+
+  // ================================
+  // GREENSBORO AREA COURTS
+  // ================================
+
+  // Tennis Courts - Greensboro
+  {
+    id: 2009,
+    name: "Greensboro Tennis Club",
+    sport: "tennis",
+    address: "4213 Northwood Dr, Greensboro, NC 27455",
+    coordinates: { lat: 36.1127, lng: -79.8634 },
+    rating: 4.6,
+    pricePerHour: 35,
+    amenities: ["parking", "restrooms", "lighting", "pro_shop", "lessons"],
+    surface: "hard",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1622279457486-62dea4837b62?w=300&h=200&fit=crop",
+    phone: "(336) 282-4200",
+    website: "https://greensborotennisclub.com",
+    description: "Established tennis club with comprehensive programs and facilities",
+    capacity: 16,
+    tags: ["established", "comprehensive", "programs"]
+  },
+  {
+    id: 2011,
+    name: "UNCG Tennis Complex",
+    sport: "tennis",
+    address: "1408 Walker Ave, Greensboro, NC 27412",
+    coordinates: { lat: 36.0687, lng: -79.8098 },
+    rating: 4.4,
+    pricePerHour: 20,
+    amenities: ["parking", "restrooms", "lighting", "university_access"],
+    surface: "hard",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop",
+    phone: "(336) 334-3259",
+    website: "https://uncgspartans.com",
+    description: "University tennis complex with public access during designated times",
+    capacity: 12,
+    tags: ["university", "public_access"]
+  },
+
+  // Basketball Courts - Greensboro
+  {
+    id: 2013,
+    name: "Barber Park Basketball Courts",
+    sport: "basketball",
+    address: "1500 Barber Park Dr, Greensboro, NC 27408",
+    coordinates: { lat: 36.0398, lng: -79.8234 },
+    rating: 4.3,
+    pricePerHour: 0,
+    amenities: ["parking", "restrooms", "outdoor", "free", "multiple_courts"],
+    surface: "concrete",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=300&h=200&fit=crop",
+    phone: "(336) 373-2937",
+    website: "https://greensboro-nc.gov/parks",
+    description: "Large recreation center with multiple outdoor basketball courts",
+    capacity: 24,
+    tags: ["free", "recreation_center", "multiple_courts"]
+  },
+
+  // ================================
+  // WINSTON-SALEM AREA COURTS
+  // ================================
+
+  // Tennis Courts - Winston-Salem
+  {
+    id: 2015,
+    name: "Tanglewood Park Tennis Center",
+    sport: "tennis",
+    address: "4061 Clemmons Rd, Clemmons, NC 27012",
+    coordinates: { lat: 36.0234, lng: -80.3829 },
+    rating: 4.7,
+    pricePerHour: 30,
+    amenities: ["parking", "restrooms", "lighting", "pro_shop", "lessons", "scenic"],
+    surface: "hard",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=300&h=200&fit=crop",
+    phone: "(336) 778-6370",
+    website: "https://tanglewoodpark.org",
+    description: "Beautiful tennis center in scenic Tanglewood Park setting",
+    capacity: 10,
+    tags: ["scenic", "park_setting", "beautiful"]
+  },
+  {
+    id: 2017,
+    name: "Wake Forest University Tennis Complex",
+    sport: "tennis",
+    address: "1834 Wake Forest Rd, Winston-Salem, NC 27106",
+    coordinates: { lat: 36.1345, lng: -80.2798 },
+    rating: 4.8,
+    pricePerHour: 35,
+    amenities: ["parking", "restrooms", "lighting", "university_access", "tournaments"],
+    surface: "hard",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1622279457486-62dea4837b62?w=300&h=200&fit=crop",
+    phone: "(336) 758-5640",
+    website: "https://godeacs.com",
+    description: "Division I tennis facility with excellent courts and amenities",
+    capacity: 14,
+    tags: ["division_i", "tournaments", "excellent"]
+  },
+
+  // Basketball Courts - Winston-Salem
+  {
+    id: 2019,
+    name: "Washington Park Basketball Courts",
+    sport: "basketball",
+    address: "840 N Highland Ave, Winston-Salem, NC 27101",
+    coordinates: { lat: 36.1089, lng: -80.2401 },
+    rating: 4.2,
+    pricePerHour: 0,
+    amenities: ["parking", "restrooms", "outdoor", "free", "community"],
+    surface: "concrete",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=300&h=200&fit=crop",
+    phone: "(336) 727-8000",
+    website: "https://cityofws.org/parks",
+    description: "Community basketball courts in the heart of Winston-Salem",
+    capacity: 16,
+    tags: ["free", "central", "community"]
+  },
+
+  // ================================
+  // ASHEVILLE AREA COURTS
+  // ================================
+
+  {
+    id: 2021,
+    name: "Asheville Racquet Club",
+    sport: "tennis",
+    address: "114 Racquet Club Rd, Asheville, NC 28803",
+    coordinates: { lat: 35.5498, lng: -82.5001 },
+    rating: 4.6,
+    pricePerHour: 40,
+    amenities: ["parking", "restrooms", "lighting", "pro_shop", "lessons", "mountain_views"],
+    surface: "hard",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=300&h=200&fit=crop",
+    phone: "(828) 274-3361",
+    website: "https://ashevilleracquetclub.com",
+    description: "Mountain tennis club with stunning Blue Ridge Mountain views",
+    capacity: 12,
+    tags: ["mountain_views", "scenic", "blue_ridge"]
+  },
+  {
+    id: 2023,
+    name: "UNCA Justice Center Courts",
+    sport: "basketball",
+    address: "1 University Heights, Asheville, NC 28804",
+    coordinates: { lat: 35.6145, lng: -82.5201 },
+    rating: 4.5,
+    pricePerHour: 15,
+    amenities: ["parking", "restrooms", "lighting", "university_access"],
+    surface: "hardwood",
+    indoor: true,
+    available: true,
+    image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=300&h=200&fit=crop",
+    phone: "(828) 251-6472",
+    website: "https://bulldog.unca.edu",
+    description: "University basketball facility with public access hours",
+    capacity: 20,
+    tags: ["university", "indoor", "mountains"]
+  },
+
+  // ================================
+  // WILMINGTON AREA COURTS
+  // ================================
+
+  {
+    id: 2025,
+    name: "Wilmington Tennis Center",
+    sport: "tennis",
+    address: "3901 Middle Sound Loop Rd, Wilmington, NC 28411",
+    coordinates: { lat: 34.2257, lng: -77.8345 },
+    rating: 4.4,
+    pricePerHour: 32,
+    amenities: ["parking", "restrooms", "lighting", "lessons", "coastal"],
+    surface: "hard",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=300&h=200&fit=crop",
+    phone: "(910) 341-7855",
+    website: "https://wilmingtonnc.gov/tennis",
+    description: "Coastal tennis center with ocean breezes and year-round play",
+    capacity: 8,
+    tags: ["coastal", "ocean_breeze", "year_round"]
+  },
+  {
+    id: 2027,
+    name: "UNCW Hawks Nest Courts",
+    sport: "basketball",
+    address: "601 S College Rd, Wilmington, NC 28403",
+    coordinates: { lat: 34.2257, lng: -77.8734 },
+    rating: 4.3,
+    pricePerHour: 18,
+    amenities: ["parking", "restrooms", "lighting", "university_access", "coastal"],
+    surface: "concrete",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop",
+    phone: "(910) 962-3227",
+    website: "https://uncwsports.com",
+    description: "University outdoor basketball courts near the coast",
+    capacity: 12,
+    tags: ["university", "coastal", "outdoor"]
+  },
+
+  // ================================
+  // SPECIALTY AND EMERGING SPORTS
+  // ================================
+
+  // Pickleball Courts
+  {
+    id: 2029,
+    name: "Triangle Pickleball Club",
+    sport: "pickleball",
+    address: "6440 Falls of Neuse Rd, Raleigh, NC 27615",
+    coordinates: { lat: 35.8634, lng: -78.6098 },
+    rating: 4.8,
+    pricePerHour: 25,
+    amenities: ["parking", "restrooms", "lighting", "lessons", "tournaments", "dedicated_courts"],
+    surface: "composite",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=300&h=200&fit=crop",
+    phone: "(919) 845-7625",
+    website: "https://trianglepickleball.com",
+    description: "Dedicated pickleball facility with 8 courts and active league play",
+    capacity: 32,
+    tags: ["dedicated", "leagues", "tournaments"]
+  },
+  {
+    id: 2030,
+    name: "Charlotte Pickleball Courts",
+    sport: "pickleball",
+    address: "5855 Brookshire Blvd, Charlotte, NC 28216",
+    coordinates: { lat: 35.2456, lng: -80.8934 },
+    rating: 4.5,
+    pricePerHour: 20,
+    amenities: ["parking", "restrooms", "lighting", "beginner_friendly"],
+    surface: "composite",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=300&h=200&fit=crop",
+    phone: "(704) 432-1234",
+    website: "https://charlotte.gov/pickleball",
+    description: "New pickleball courts with beginner programs and open play",
+    capacity: 24,
+    tags: ["new", "beginner_friendly", "open_play"]
+  },
+  {
+    id: 2032,
+    name: "Reedy Creek Park Pickleball Courts",
+    sport: "pickleball",
+    address: "2900 Rocky River Rd, Charlotte, NC 28215",
+    coordinates: { lat: 35.2731, lng: -80.7234 },
+    rating: 4.3,
+    pricePerHour: 10,
+    amenities: ["parking", "restrooms", "lighting", "walking_trails", "playground"],
+    surface: "asphalt",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop",
+    phone: "(704) 336-3854",
+    website: "https://charlotte.gov/parks",
+    description: "Pickleball courts in Charlotte's popular Reedy Creek Park",
+    capacity: 16,
+    openingHours: {
+      monday: { open: "6:00", close: "dusk" },
+      tuesday: { open: "6:00", close: "dusk" },
+      wednesday: { open: "6:00", close: "dusk" },
+      thursday: { open: "6:00", close: "dusk" },
+      friday: { open: "6:00", close: "dusk" },
+      saturday: { open: "6:00", close: "dusk" },
+      sunday: { open: "6:00", close: "dusk" }
+    },
+    tags: ["public", "park", "charlotte", "trails"]
+  },
+  {
+    id: 2034,
+    name: "SouthPark Pickleball Club",
+    sport: "pickleball",
+    address: "6401 Carmel Rd, Charlotte, NC 28226",
+    coordinates: { lat: 35.1456, lng: -80.8234 },
+    rating: 4.6,
+    pricePerHour: 15,
+    amenities: ["parking", "restrooms", "lighting", "pro_shop", "lessons", "tournaments"],
+    surface: "sport_court",
+    indoor: false,
+    available: true,
+    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop",
+    phone: "(704) 541-2345",
+    website: "https://southparkpickleball.com",
+    description: "Premium pickleball facility in Charlotte's SouthPark area",
+    capacity: 20,
+    openingHours: {
+      monday: { open: "6:00", close: "22:00" },
+      tuesday: { open: "6:00", close: "22:00" },
+      wednesday: { open: "6:00", close: "22:00" },
+      thursday: { open: "6:00", close: "22:00" },
+      friday: { open: "6:00", close: "22:00" },
+      saturday: { open: "7:00", close: "21:00" },
+      sunday: { open: "7:00", close: "21:00" }
+    },
+    tags: ["premium", "southpark", "lessons", "tournaments", "charlotte"]
+  },
+  {
+    id: 2036,
     name: "University City Pickleball Courts",
     sport: "pickleball",
     address: "8800 University City Blvd, Charlotte, NC 28223",
@@ -1084,435 +1512,7 @@ export const northCarolinaCourts: Court[] = [
 
   // Pickleball Courts
   {
-    id: 800,
-    name: "Triangle Pickleball Club",
-    sport: "pickleball",
-    address: "6440 Falls of Neuse Rd, Raleigh, NC 27615",
-    coordinates: { lat: 35.8634, lng: -78.6098 },
-    rating: 4.8,
-    pricePerHour: 25,
-    amenities: ["parking", "restrooms", "lighting", "lessons", "tournaments", "dedicated_courts"],
-    surface: "composite",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=300&h=200&fit=crop",
-    phone: "(919) 845-7625",
-    website: "https://trianglepickleball.com",
-    description: "Dedicated pickleball facility with 8 courts and active league play",
-    capacity: 32,
-    tags: ["dedicated", "leagues", "tournaments"]
-  },
-  {
-    id: 801,
-    name: "Charlotte Pickleball Courts",
-    sport: "pickleball",
-    address: "5855 Brookshire Blvd, Charlotte, NC 28216",
-    coordinates: { lat: 35.2456, lng: -80.8934 },
-    rating: 4.5,
-    pricePerHour: 20,
-    amenities: ["parking", "restrooms", "lighting", "beginner_friendly"],
-    surface: "composite",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=300&h=200&fit=crop",
-    phone: "(704) 432-1234",
-    website: "https://charlotte.gov/pickleball",
-    description: "New pickleball courts with beginner programs and open play",
-    capacity: 24,
-    tags: ["new", "beginner_friendly", "open_play"]
-  },
-  {
-    id: 1055,
-    name: "Reedy Creek Park Pickleball Courts",
-    sport: "pickleball",
-    address: "2900 Rocky River Rd, Charlotte, NC 28215",
-    coordinates: { lat: 35.2731, lng: -80.7234 },
-    rating: 4.3,
-    pricePerHour: 10,
-    amenities: ["parking", "restrooms", "lighting", "walking_trails", "playground"],
-    surface: "asphalt",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop",
-    phone: "(704) 336-3854",
-    website: "https://charlotte.gov/parks",
-    description: "Pickleball courts in Charlotte's popular Reedy Creek Park",
-    capacity: 16,
-    openingHours: {
-      monday: { open: "6:00", close: "dusk" },
-      tuesday: { open: "6:00", close: "dusk" },
-      wednesday: { open: "6:00", close: "dusk" },
-      thursday: { open: "6:00", close: "dusk" },
-      friday: { open: "6:00", close: "dusk" },
-      saturday: { open: "6:00", close: "dusk" },
-      sunday: { open: "6:00", close: "dusk" }
-    },
-    tags: ["public", "park", "charlotte", "trails"]
-  },
-  {
-    id: 1056,
-    name: "SouthPark Pickleball Club",
-    sport: "pickleball",
-    address: "6401 Carmel Rd, Charlotte, NC 28226",
-    coordinates: { lat: 35.1456, lng: -80.8234 },
-    rating: 4.6,
-    pricePerHour: 15,
-    amenities: ["parking", "restrooms", "lighting", "pro_shop", "lessons", "tournaments"],
-    surface: "sport_court",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop",
-    phone: "(704) 541-2345",
-    website: "https://southparkpickleball.com",
-    description: "Premium pickleball facility in Charlotte's SouthPark area",
-    capacity: 20,
-    openingHours: {
-      monday: { open: "6:00", close: "22:00" },
-      tuesday: { open: "6:00", close: "22:00" },
-      wednesday: { open: "6:00", close: "22:00" },
-      thursday: { open: "6:00", close: "22:00" },
-      friday: { open: "6:00", close: "22:00" },
-      saturday: { open: "7:00", close: "21:00" },
-      sunday: { open: "7:00", close: "21:00" }
-    },
-    tags: ["premium", "southpark", "lessons", "tournaments", "charlotte"]
-  },
-  {
-    id: 1057,
-    name: "University City Pickleball Courts",
-    sport: "pickleball",
-    address: "8800 University City Blvd, Charlotte, NC 28223",
-    coordinates: { lat: 35.3089, lng: -80.7345 },
-    rating: 4.2,
-    pricePerHour: 8,
-    amenities: ["parking", "restrooms", "lighting", "university_access"],
-    surface: "concrete",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop",
-    phone: "(704) 687-8622",
-    website: "https://charlotte.gov/parks",
-    description: "Community pickleball courts near UNC Charlotte campus",
-    capacity: 12,
-    openingHours: {
-      monday: { open: "6:00", close: "21:00" },
-      tuesday: { open: "6:00", close: "21:00" },
-      wednesday: { open: "6:00", close: "21:00" },
-      thursday: { open: "6:00", close: "21:00" },
-      friday: { open: "6:00", close: "21:00" },
-      saturday: { open: "8:00", close: "20:00" },
-      sunday: { open: "8:00", close: "20:00" }
-    },
-    tags: ["university", "community", "charlotte", "affordable"]
-  },
-
-  // ================================
-  // DURHAM AREA COURTS
-  // ================================
-
-  // Tennis Courts - Durham
-  {
-    id: 300,
-    name: "Duke University Tennis Center",
-    sport: "tennis",
-    address: "201 Science Dr, Durham, NC 27708",
-    coordinates: { lat: 36.0014, lng: -78.9382 },
-    rating: 4.7,
-    pricePerHour: 30,
-    amenities: ["parking", "restrooms", "lighting", "university_access", "tournaments"],
-    surface: "hard",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop",
-    phone: "(919) 684-2121",
-    website: "https://goduke.com",
-    description: "NCAA Division I tennis facility with public access hours",
-    capacity: 20,
-    tags: ["university", "ncaa", "prestigious"]
-  },
-  {
-    id: 301,
-    name: "Forest Hills Park Tennis Courts",
-    sport: "tennis",
-    address: "1420 S Alston Ave, Durham, NC 27713",
-    coordinates: { lat: 35.9634, lng: -78.9287 },
-    rating: 4.3,
-    pricePerHour: 15,
-    amenities: ["parking", "restrooms", "lighting", "affordable"],
-    surface: "hard",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=300&h=200&fit=crop",
-    phone: "(919) 560-4355",
-    website: "https://durhamnc.gov/parks",
-    description: "Community tennis courts in well-maintained Forest Hills Park",
-    capacity: 8,
-    tags: ["affordable", "community", "well_maintained"]
-  },
-
-  // Basketball Courts - Durham
-  {
-    id: 302,
-    name: "Lyon Park Basketball Courts",
-    sport: "basketball",
-    address: "1309 S Alston Ave, Durham, NC 27713",
-    coordinates: { lat: 35.9598, lng: -78.9301 },
-    rating: 4.1,
-    pricePerHour: 0,
-    amenities: ["parking", "restrooms", "outdoor", "free", "community"],
-    surface: "concrete",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=300&h=200&fit=crop",
-    phone: "(919) 560-4355",
-    website: "https://durhamnc.gov/parks",
-    description: "Active community basketball courts popular with local players",
-    capacity: 12,
-    tags: ["free", "active_community", "local_favorite"]
-  },
-  {
-    id: 303,
-    name: "Cameron Indoor Stadium Practice Courts",
-    sport: "basketball",
-    address: "120 Science Dr, Durham, NC 27708",
-    coordinates: { lat: 36.0014, lng: -78.9402 },
-    rating: 4.9,
-    pricePerHour: 100,
-    amenities: ["parking", "restrooms", "lighting", "historic", "premium"],
-    surface: "hardwood",
-    indoor: true,
-    available: false,
-    image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=300&h=200&fit=crop",
-    phone: "(919) 684-2121",
-    website: "https://goduke.com",
-    description: "Historic practice facility adjacent to legendary Cameron Indoor Stadium",
-    capacity: 10,
-    tags: ["historic", "legendary", "premium"]
-  },
-
-  // ================================
-  // GREENSBORO AREA COURTS
-  // ================================
-
-  // Tennis Courts - Greensboro
-  {
-    id: 400,
-    name: "Greensboro Tennis Club",
-    sport: "tennis",
-    address: "4213 Northwood Dr, Greensboro, NC 27455",
-    coordinates: { lat: 36.1127, lng: -79.8634 },
-    rating: 4.6,
-    pricePerHour: 35,
-    amenities: ["parking", "restrooms", "lighting", "pro_shop", "lessons"],
-    surface: "hard",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1622279457486-62dea4837b62?w=300&h=200&fit=crop",
-    phone: "(336) 282-4200",
-    website: "https://greensborotennisclub.com",
-    description: "Established tennis club with comprehensive programs and facilities",
-    capacity: 16,
-    tags: ["established", "comprehensive", "programs"]
-  },
-  {
-    id: 401,
-    name: "UNCG Tennis Complex",
-    sport: "tennis",
-    address: "1408 Walker Ave, Greensboro, NC 27412",
-    coordinates: { lat: 36.0687, lng: -79.8098 },
-    rating: 4.4,
-    pricePerHour: 20,
-    amenities: ["parking", "restrooms", "lighting", "university_access"],
-    surface: "hard",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=200&fit=crop",
-    phone: "(336) 334-3259",
-    website: "https://uncgspartans.com",
-    description: "University tennis complex with public access during designated times",
-    capacity: 12,
-    tags: ["university", "public_access"]
-  },
-
-  // Basketball Courts - Greensboro
-  {
-    id: 402,
-    name: "Barber Park Basketball Courts",
-    sport: "basketball",
-    address: "1500 Barber Park Dr, Greensboro, NC 27408",
-    coordinates: { lat: 36.0398, lng: -79.8234 },
-    rating: 4.3,
-    pricePerHour: 0,
-    amenities: ["parking", "restrooms", "outdoor", "free", "multiple_courts"],
-    surface: "concrete",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=300&h=200&fit=crop",
-    phone: "(336) 373-2937",
-    website: "https://greensboro-nc.gov/parks",
-    description: "Large recreation center with multiple outdoor basketball courts",
-    capacity: 24,
-    tags: ["free", "recreation_center", "multiple_courts"]
-  },
-
-  // ================================
-  // WINSTON-SALEM AREA COURTS
-  // ================================
-
-  // Tennis Courts - Winston-Salem
-  {
-    id: 500,
-    name: "Tanglewood Park Tennis Center",
-    sport: "tennis",
-    address: "4061 Clemmons Rd, Clemmons, NC 27012",
-    coordinates: { lat: 36.0234, lng: -80.3829 },
-    rating: 4.7,
-    pricePerHour: 30,
-    amenities: ["parking", "restrooms", "lighting", "pro_shop", "lessons", "scenic"],
-    surface: "hard",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=300&h=200&fit=crop",
-    phone: "(336) 778-6370",
-    website: "https://tanglewoodpark.org",
-    description: "Beautiful tennis center in scenic Tanglewood Park setting",
-    capacity: 10,
-    tags: ["scenic", "park_setting", "beautiful"]
-  },
-  {
-    id: 501,
-    name: "Wake Forest University Tennis Complex",
-    sport: "tennis",
-    address: "1834 Wake Forest Rd, Winston-Salem, NC 27106",
-    coordinates: { lat: 36.1345, lng: -80.2798 },
-    rating: 4.8,
-    pricePerHour: 35,
-    amenities: ["parking", "restrooms", "lighting", "university_access", "tournaments"],
-    surface: "hard",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1622279457486-62dea4837b62?w=300&h=200&fit=crop",
-    phone: "(336) 758-5640",
-    website: "https://godeacs.com",
-    description: "Division I tennis facility with excellent courts and amenities",
-    capacity: 14,
-    tags: ["division_i", "tournaments", "excellent"]
-  },
-
-  // Basketball Courts - Winston-Salem
-  {
-    id: 502,
-    name: "Washington Park Basketball Courts",
-    sport: "basketball",
-    address: "840 N Highland Ave, Winston-Salem, NC 27101",
-    coordinates: { lat: 36.1089, lng: -80.2401 },
-    rating: 4.2,
-    pricePerHour: 0,
-    amenities: ["parking", "restrooms", "outdoor", "free", "community"],
-    surface: "concrete",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=300&h=200&fit=crop",
-    phone: "(336) 727-8000",
-    website: "https://cityofws.org/parks",
-    description: "Community basketball courts in the heart of Winston-Salem",
-    capacity: 16,
-    tags: ["free", "central", "community"]
-  },
-
-  // ================================
-  // ASHEVILLE AREA COURTS
-  // ================================
-
-  {
-    id: 600,
-    name: "Asheville Racquet Club",
-    sport: "tennis",
-    address: "114 Racquet Club Rd, Asheville, NC 28803",
-    coordinates: { lat: 35.5498, lng: -82.5001 },
-    rating: 4.6,
-    pricePerHour: 40,
-    amenities: ["parking", "restrooms", "lighting", "pro_shop", "lessons", "mountain_views"],
-    surface: "hard",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=300&h=200&fit=crop",
-    phone: "(828) 274-3361",
-    website: "https://ashevilleracquetclub.com",
-    description: "Mountain tennis club with stunning Blue Ridge Mountain views",
-    capacity: 12,
-    tags: ["mountain_views", "scenic", "blue_ridge"]
-  },
-  {
-    id: 601,
-    name: "UNCA Justice Center Courts",
-    sport: "basketball",
-    address: "1 University Heights, Asheville, NC 28804",
-    coordinates: { lat: 35.6145, lng: -82.5201 },
-    rating: 4.5,
-    pricePerHour: 15,
-    amenities: ["parking", "restrooms", "lighting", "university_access"],
-    surface: "hardwood",
-    indoor: true,
-    available: true,
-    image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=300&h=200&fit=crop",
-    phone: "(828) 251-6472",
-    website: "https://bulldog.unca.edu",
-    description: "University basketball facility with public access hours",
-    capacity: 20,
-    tags: ["university", "indoor", "mountains"]
-  },
-
-  // ================================
-  // WILMINGTON AREA COURTS
-  // ================================
-
-  {
-    id: 700,
-    name: "Wilmington Tennis Center",
-    sport: "tennis",
-    address: "3901 Middle Sound Loop Rd, Wilmington, NC 28411",
-    coordinates: { lat: 34.2257, lng: -77.8345 },
-    rating: 4.4,
-    pricePerHour: 32,
-    amenities: ["parking", "restrooms", "lighting", "lessons", "coastal"],
-    surface: "hard",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=300&h=200&fit=crop",
-    phone: "(910) 341-7855",
-    website: "https://wilmingtonnc.gov/tennis",
-    description: "Coastal tennis center with ocean breezes and year-round play",
-    capacity: 8,
-    tags: ["coastal", "ocean_breeze", "year_round"]
-  },
-  {
-    id: 701,
-    name: "UNCW Hawks Nest Courts",
-    sport: "basketball",
-    address: "601 S College Rd, Wilmington, NC 28403",
-    coordinates: { lat: 34.2257, lng: -77.8734 },
-    rating: 4.3,
-    pricePerHour: 18,
-    amenities: ["parking", "restrooms", "lighting", "university_access", "coastal"],
-    surface: "concrete",
-    indoor: false,
-    available: true,
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop",
-    phone: "(910) 962-3227",
-    website: "https://uncwsports.com",
-    description: "University outdoor basketball courts near the coast",
-    capacity: 12,
-    tags: ["university", "coastal", "outdoor"]
-  },
-
-  // ================================
-  // SPECIALTY AND EMERGING SPORTS
-  // ================================
-
-  // Pickleball Courts
-  {
-    id: 800,
+    id: 802,
     name: "Triangle Pickleball Club",
     sport: "pickleball",
     address: "6440 Falls of Neuse Rd, Raleigh, NC 27615",

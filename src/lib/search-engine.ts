@@ -24,9 +24,6 @@ export class SearchEngine {
       results = results.filter(r => r.court.sport.toLowerCase() === filters.sport!.toLowerCase())
     }
 
-    if (filters.available !== undefined) {
-      results = results.filter(r => r.court.available === filters.available)
-    }
 
     // Sort by score
     results.sort((a, b) => b.score - a.score)
@@ -106,7 +103,7 @@ export class SearchEngine {
   getFilterOptions(): FilterOptions {
     const sports = [...new Set(this.courts.map(c => c.sport))]
     const amenities = [...new Set(this.courts.flatMap(c => c.amenities || []))]
-    const surfaces = [...new Set(this.courts.map(c => c.surface).filter(Boolean))]
+    const surfaces = [...new Set(this.courts.map(c => c.surface).filter((s): s is string => Boolean(s)))]
     
     const prices = this.courts.map(c => c.pricePerHour).filter(Boolean)
     const minPrice = Math.min(...prices)
@@ -135,7 +132,6 @@ export class SearchEngine {
         { value: 'rating', label: 'Rating: High to Low' }
       ],
       quickFilters: [
-        { label: 'Available Now', filter: { available: true } },
         { label: 'Indoor Only', filter: { indoor: true } }
       ]
     }

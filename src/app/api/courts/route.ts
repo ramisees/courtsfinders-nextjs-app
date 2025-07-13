@@ -8,7 +8,6 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const sport = searchParams.get('sport')
     const location = searchParams.get('location')
-    const available = searchParams.get('available')
     
     let filteredCourts = northCarolinaCourts
     
@@ -23,10 +22,6 @@ export async function GET(request: NextRequest) {
       filteredCourts = filteredCourts.filter(
         court => court.address.toLowerCase().includes(location.toLowerCase())
       )
-    }
-    
-    if (available === 'true') {
-      filteredCourts = filteredCourts.filter(court => court.available)
     }
     
     console.log(`✅ Returning ${filteredCourts.length} courts`)

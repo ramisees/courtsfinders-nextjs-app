@@ -9,8 +9,7 @@ export default function DebugPage() {
   const [callCount, setCallCount] = useState(0)
 
   useEffect(() => {
-    console.log('🔍 Debug useEffect triggered, call count:', callCount + 1)
-    setCallCount(prev => prev + 1)
+    console.log('🔍 Debug useEffect triggered on mount')
     
     // Prevent multiple calls
     if (loading) {
@@ -19,10 +18,11 @@ export default function DebugPage() {
     }
 
     loadCourts()
-  }, [callCount, loading]) // Include dependencies
+  }, []) // Run only once on mount
 
   const loadCourts = async () => {
     console.log('🔄 Starting loadCourts...')
+    setCallCount(prev => prev + 1)
     setLoading(true)
     setError(null)
     

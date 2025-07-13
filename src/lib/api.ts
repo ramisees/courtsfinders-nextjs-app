@@ -107,30 +107,50 @@ export const searchCourts = async (
     return Array.isArray(response) ? response : []
     
   } catch (error) {
-    console.error('Search failed:', error)
+    console.error('❌ Search API failed, trying fallback:', error)
     
-    // Fallback: try to get all courts and filter client-side
+    // Fallback: Use courts API with same parameters
     try {
-      console.log('🔄 Fallback: filtering all courts client-side...')
-      const allCourts = await getAllCourts()
+      console.log('🔄 Trying fallback with /api/courts')
+      const fallbackEndpoint = `/courts${queryString ? `?${queryString}` : ''}`
+      const fallbackResponse = await apiRequest<any>(fallbackEndpoint)
       
-      return allCourts.filter(court => {
-        const matchesQuery = !query || 
-          court.name.toLowerCase().includes(query.toLowerCase()) ||
-          court.address.toLowerCase().includes(query.toLowerCase())
-        
-        const matchesSport = sport === 'all' || 
-          court.sport.toLowerCase() === sport.toLowerCase()
-        
-        const matchesLocation = !location ||
-          court.address.toLowerCase().includes(location.toLowerCase())
-        
-        return matchesQuery && matchesSport && matchesLocation
-      })
+      // Handle different response formats
+      if (Array.isArray(fallbackResponse)) {
+        return fallbackResponse
+      } else if (fallbackResponse && Array.isArray(fallbackResponse.courts)) {
+        return fallbackResponse.courts
+      } else if (fallbackResponse && Array.isArray(fallbackResponse.data)) {
+        return fallbackResponse.data
+      }
       
+      return []
     } catch (fallbackError) {
-      console.error('Fallback search failed:', fallbackError)
-      throw new Error('Search failed. Please try again.')
+      console.error('❌ Fallback also failed:', fallbackError)
+      
+      // Final fallback: try to get all courts and filter client-side
+      try {
+        console.log('🔄 Final fallback: filtering all courts client-side...')
+        const allCourts = await getAllCourts()
+        
+        return allCourts.filter(court => {
+          const matchesQuery = !query || 
+            court.name.toLowerCase().includes(query.toLowerCase()) ||
+            court.address.toLowerCase().includes(query.toLowerCase())
+          
+          const matchesSport = sport === 'all' || 
+            court.sport.toLowerCase() === sport.toLowerCase()
+          
+          const matchesLocation = !location ||
+            court.address.toLowerCase().includes(location.toLowerCase())
+          
+          return matchesQuery && matchesSport && matchesLocation
+        })
+        
+      } catch (finalFallbackError) {
+        console.error('Final fallback search failed:', finalFallbackError)
+        throw new Error('Search failed. Please try again.')
+      }
     }
   }
 }

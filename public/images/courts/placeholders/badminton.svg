@@ -1,0 +1,43 @@
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="300" height="200" fill="#be185d"/>
+  
+  <!-- Badminton Court -->
+  <rect x="70" y="50" width="160" height="100" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Center line -->
+  <line x1="150" y1="50" x2="150" y2="150" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Service lines -->
+  <line x1="70" y1="90" x2="150" y2="90" stroke="#ffffff" stroke-width="1"/>
+  <line x1="150" y1="90" x2="230" y2="90" stroke="#ffffff" stroke-width="1"/>
+  <line x1="70" y1="110" x2="150" y2="110" stroke="#ffffff" stroke-width="1"/>
+  <line x1="150" y1="110" x2="230" y2="110" stroke="#ffffff" stroke-width="1"/>
+  
+  <!-- Center service line -->
+  <line x1="110" y1="90" x2="110" y2="150" stroke="#ffffff" stroke-width="1"/>
+  <line x1="190" y1="90" x2="190" y2="150" stroke="#ffffff" stroke-width="1"/>
+  <line x1="110" y1="50" x2="110" y2="90" stroke="#ffffff" stroke-width="1"/>
+  <line x1="190" y1="50" x2="190" y2="90" stroke="#ffffff" stroke-width="1"/>
+  
+  <!-- Net -->
+  <line x1="150" y1="40" x2="150" y2="50" stroke="#ffffff" stroke-width="3"/>
+  <rect x="148" y="40" width="4" height="10" fill="#f3f4f6"/>
+  
+  <!-- Shuttlecock -->
+  <ellipse cx="125" cy="75" rx="3" ry="8" fill="#ffffff"/>
+  <path d="M 125 67 L 122 62 L 125 60 L 128 62 Z" fill="#fbbf24"/>
+  
+  <!-- Badminton racket -->
+  <ellipse cx="180" cy="120" rx="8" ry="12" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+  <line x1="180" y1="132" x2="180" y2="145" stroke="#a16207" stroke-width="3"/>
+  <g stroke="#8b5cf6" stroke-width="0.5">
+    <line x1="175" y1="115" x2="185" y2="125"/>
+    <line x1="185" y1="115" x2="175" y2="125"/>
+    <line x1="180" y1="108" x2="180" y2="132"/>
+    <line x1="172" y1="120" x2="188" y2="120"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="150" y="185" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Badminton Court</text>
+</svg>

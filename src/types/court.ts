@@ -18,7 +18,7 @@ export interface Court {
     time: number
   }>
   image: string
-  available: boolean
+  available?: boolean
   amenities?: string[]
   description?: string
   coordinates?: {
@@ -76,7 +76,6 @@ export interface SearchResult {
     textMatch: number
     locationMatch: number
     ratingBonus: number
-    availabilityBonus: number
     priceScore: number
   }
 }
@@ -85,7 +84,6 @@ export interface SearchResult {
 export interface AdvancedSearchParams extends SearchFilters {
   fuzzyMatch?: boolean
   exactMatch?: boolean
-  includeUnavailable?: boolean
   businessHours?: boolean
   openNow?: boolean
 }

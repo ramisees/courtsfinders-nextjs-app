@@ -148,11 +148,6 @@ export default function SearchResults({
                 showLoading={true}
                 showSportIcon={true}
               />
-              <span className={`absolute top-3 right-3 px-3 py-1 rounded-full text-sm font-semibold ${
-                court.available ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-              }`}>
-                {court.available ? 'Available' : 'Booked'}
-              </span>
             </div>
             
             <div className="p-6">
