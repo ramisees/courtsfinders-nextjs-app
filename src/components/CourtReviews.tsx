@@ -110,7 +110,61 @@ export default function CourtReviews({ court, className = '' }: CourtReviewsProp
     setExpandedReviews(newExpanded)
   }
 
+  const isGooglePlacesCourt = (court as any).tags?.includes('google_places')
+
   if (!court.reviews || court.reviews.length === 0) {
+    // Check if we have rating data but no detailed reviews
+    if (court.rating && court.userRatingsTotal) {
+      return (
+        <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Reviews</h3>
+          
+          {/* Rating Summary */}
+          <div className="mb-6">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="text-3xl font-bold text-gray-900">{court.rating}</div>
+              <div className="flex-1">
+                <div className="flex items-center gap-1 mb-1">
+                  {[...Array(5)].map((_, i) => (
+                    <span
+                      key={i}
+                      className={`text-lg ${
+                        i < Math.floor(court.rating) ? 'text-yellow-400' : 'text-gray-300'
+                      }`}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="text-sm text-gray-600">
+                  Based on {court.userRatingsTotal} review{court.userRatingsTotal !== 1 ? 's' : ''}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center text-gray-500 border-t pt-6">
+            {isGooglePlacesCourt ? (
+              <>
+                <p>No detailed reviews are available for this location.</p>
+                <p className="text-sm mt-2">
+                  This court has a {court.rating}-star rating based on {court.userRatingsTotal} review{court.userRatingsTotal !== 1 ? 's' : ''}.
+                </p>
+              </>
+            ) : (
+              <>
+                <p>Detailed reviews are not available for this court.</p>
+                <p className="text-sm mt-2">
+                  This is a local court listing. Visit the court to share your experience!
+                </p>
+              </>
+            )}
+          </div>
+        </div>
+      )
+    }
+
+    // No reviews and no rating data
     return (
       <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Reviews</h3>
