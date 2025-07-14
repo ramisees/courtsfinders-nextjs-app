@@ -71,7 +71,7 @@ export default function CourtDetailsModal({
               onClick={() => setActiveTab('details')}
               className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
                 activeTab === 'details'
-                  ? 'border-blue-500 text-blue-600'
+                  ? 'border-yellow-400 text-black'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -81,7 +81,7 @@ export default function CourtDetailsModal({
               onClick={() => setActiveTab('reviews')}
               className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
                 activeTab === 'reviews'
-                  ? 'border-blue-500 text-blue-600'
+                  ? 'border-yellow-400 text-black'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -95,7 +95,7 @@ export default function CourtDetailsModal({
               onClick={() => setActiveTab('directions')}
               className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
                 activeTab === 'directions'
-                  ? 'border-blue-500 text-blue-600'
+                  ? 'border-yellow-400 text-black'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -174,7 +174,7 @@ export default function CourtDetailsModal({
                             <span className="text-gray-500">📞</span>
                             <a
                               href={`tel:${court.phone}`}
-                              className="text-blue-600 hover:text-blue-800"
+                              className="text-yellow-600 hover:text-yellow-800"
                             >
                               {court.phone}
                             </a>
@@ -187,7 +187,7 @@ export default function CourtDetailsModal({
                               href={court.website}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-blue-600 hover:text-blue-800"
+                              className="text-yellow-600 hover:text-yellow-800"
                             >
                               Visit Website
                             </a>
@@ -207,7 +207,7 @@ export default function CourtDetailsModal({
                         {court.amenities.map((amenity, index) => (
                           <span
                             key={index}
-                            className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
+                            className="px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-sm font-medium"
                           >
                             {amenity.replace(/_/g, ' ')}
                           </span>
@@ -266,7 +266,7 @@ export default function CourtDetailsModal({
                         onClick={() => setSelectedTravelMode(mode)}
                         className={`p-3 rounded-lg border transition-colors ${
                           selectedTravelMode === mode
-                            ? 'border-blue-500 bg-blue-50 text-blue-700'
+                            ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
                             : 'border-gray-300 hover:border-gray-400'
                         }`}
                       >
@@ -297,7 +297,7 @@ export default function CourtDetailsModal({
                 <button
                   onClick={handleGetDirections}
                   disabled={!court.coordinates}
-                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-yellow-600 text-black py-3 px-6 rounded-lg font-semibold hover:bg-yellow-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <span>🗺️</span>
                   Open in Maps
