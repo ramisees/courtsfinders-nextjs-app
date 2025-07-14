@@ -20,6 +20,9 @@
     "clean": "rimraf .next out"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.56.0",
+    "@upstash/ratelimit": "^2.0.5",
+    "@upstash/redis": "^1.35.1",
     "framer-motion": "^12.23.3",
     "next": "15.3.5",
     "react": "^18",

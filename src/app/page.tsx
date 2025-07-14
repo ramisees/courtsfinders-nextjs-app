@@ -6,8 +6,15 @@ import Link from 'next/link';
 import SearchResults from '@/components/SearchResults';
 import FindNearMe from '@/components/FindNearMe';
 import AIRecommendations from '@/components/AIRecommendations';
+import dynamic from 'next/dynamic';
 import { Court } from '@/types/court';
 import { UserLocation } from '@/lib/geolocation';
+
+// Dynamic import for ProductChatbot to avoid SSR issues
+const ProductChatbot = dynamic(() => import('@/components/ProductChatbot'), { 
+  ssr: false,
+  loading: () => <div></div>
+});
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -355,6 +362,16 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* ProductChatbot - Sports Gear Assistant */}
+      <ProductChatbot 
+        currentCourtSearch={{
+          searchQuery,
+          selectedSport,
+          location: userLocation,
+          searchResults: locationSearchCourts
+        }}
+      />
     </div>
   );
 }
