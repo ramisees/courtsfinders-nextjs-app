@@ -97,17 +97,20 @@ export default function ProductChatbot({
   const buildCourtContextAnalytics = (): CourtContextAnalytics => {
     const { currentCourt, selectedSport, location, filters, searchQuery } = currentCourtSearch
     
+    // Determine the sport - prioritize currentCourt.sport, then selectedSport
+    const detectedSport = currentCourt?.sport || selectedSport
+    
     return {
       courtId: currentCourt?.id,
       courtName: currentCourt?.name,
-      sport: currentCourt?.sport || selectedSport,
+      sport: detectedSport,
       surface: currentCourt?.surface || filters?.surface,
       environment: currentCourt?.indoor === false ? 'outdoor' : currentCourt?.indoor === true ? 'indoor' : 'outdoor',
       location: currentCourt?.address || (location ? `${location.lat}, ${location.lng}` : undefined),
       priceRange: filters?.priceRange ? `$${filters.priceRange.min || 0}-${filters.priceRange.max || 500}` : undefined,
       amenities: currentCourt?.amenities || filters?.amenities,
       searchQuery,
-      selectedSport
+      selectedSport: detectedSport
     }
   }
 
@@ -214,12 +217,15 @@ export default function ProductChatbot({
   const buildCourtContext = () => {
     const { currentCourt, selectedSport, location, filters } = currentCourtSearch
     
+    // Determine the sport - prioritize currentCourt.sport, then selectedSport, then default
+    const detectedSport = currentCourt?.sport || selectedSport || 'general sports'
+    
     return {
-      courtType: currentCourt?.sport ? `${currentCourt.sport} court` : `${selectedSport || 'Sports'} court`,
+      courtType: currentCourt?.sport ? `${currentCourt.sport} court` : selectedSport ? `${selectedSport} court` : 'Sports court',
       location: currentCourt?.address || (location ? `${location.lat}, ${location.lng}` : 'Not specified'),
       surface: currentCourt?.surface || filters?.surface || 'Not specified',
       environment: currentCourt?.indoor === false ? 'outdoor' : currentCourt?.indoor === true ? 'indoor' : 'outdoor',
-      sport: currentCourt?.sport || selectedSport || 'Not specified',
+      sport: detectedSport,
       amenities: currentCourt?.amenities || filters?.amenities || [],
       priceRange: filters?.priceRange ? `$${filters.priceRange.min || 0}-${filters.priceRange.max || 500}` : 'Not specified'
     }
