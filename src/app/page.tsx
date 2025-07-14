@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import SearchResults from '@/components/SearchResults';
 import FindNearMe from '@/components/FindNearMe';
+import AIRecommendations from '@/components/AIRecommendations';
 import { Court } from '@/types/court';
 import { UserLocation } from '@/lib/geolocation';
 
@@ -37,6 +38,30 @@ export default function Home() {
   const handleLocationError = (errorMessage: string) => {
     console.error('Location search error:', errorMessage);
     alert(errorMessage);
+  };
+
+  const handleRecommendationClick = (location: string, sport: string) => {
+    setSearchQuery(location);
+    setSelectedSport(sport);
+    setHasSearched(true);
+    setIsLocationSearch(false);
+    setLocationSearchCourts(undefined);
+  };
+
+  const handleAISearchCourts = (query: string, sport: string) => {
+    setSearchQuery(query);
+    setSelectedSport(sport);
+    setHasSearched(true);
+    setIsLocationSearch(false);
+    setLocationSearchCourts(undefined);
+    
+    // Scroll to search results
+    setTimeout(() => {
+      const resultsSection = document.getElementById('search-results');
+      if (resultsSection) {
+        resultsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
@@ -87,7 +112,7 @@ export default function Home() {
             Find Your Perfect Court
           </h1>
           <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto">
-            Play tennis, basketball, pickleball, volleyball, racquetball, and multi-sport facilities in your area
+            Find tennis, basketball, pickleball, volleyball, racquetball, and multi-sport facilities with AI-powered recommendations
           </p>
           
           {/* Search Box */}
@@ -131,13 +156,21 @@ export default function Home() {
                 className="flex flex-col md:flex-row items-center gap-4"
               />
             </div>
+
+            {/* AI Recommendations Section */}
+            <AIRecommendations
+              searchQuery={searchQuery}
+              selectedSport={selectedSport}
+              onRecommendationClick={handleRecommendationClick}
+              onSearchCourts={handleAISearchCourts}
+            />
           </div>
         </div>
       </section>
 
       {/* Search Results Section */}
       {hasSearched && (
-        <section className="py-12 bg-gray-50">
+        <section id="search-results" className="py-12 bg-gray-50">{/* ...existing code... */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {isLocationSearch && userLocation ? (
               <div className="mb-6">

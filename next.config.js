@@ -17,6 +17,7 @@ const nextConfig = {
   // Environment variables
   env: {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
+    GOOGLE_GEMINI_API_KEY: process.env.GOOGLE_GEMINI_API_KEY,
   },
   
   // App Router is now stable in Next.js 15, no experimental flag needed
