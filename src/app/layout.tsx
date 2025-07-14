@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import ClientWrapper from '@/components/ClientWrapper'
+import ProductChatbot from '@/components/ProductChatbot'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,6 +24,7 @@ export default function RootLayout({
           <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
             {children}
           </div>
+          <ProductChatbot />
         </ClientWrapper>
       </body>
     </html>
