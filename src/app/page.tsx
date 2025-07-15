@@ -127,7 +127,7 @@ export default function Home() {
             <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4 mb-4">
               <input
                 type="text"
-                placeholder="Enter your location"
+                placeholder="Enter city, zip code, or address"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="flex-1 px-4 py-3 bg-white border border-gray-300 rounded text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-base"

@@ -1,9 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { northCarolinaCourts } from '@/data/nc-courts'
 
-// Check if this might be a city search
-const isCitySearch = (query: string): boolean => {
+// Check if this might be a city search or zip code search
+const isLocationSearch = (query: string): boolean => {
   if (!query.trim()) return false
+  
+  // Check for zip code patterns
+  const zipCodePatterns = [
+    /^\d{5}$/,                       // 5-digit zip code (12345)
+    /^\d{5}-\d{4}$/,                 // ZIP+4 format (12345-6789)
+    /^\d{5}\s+\d{4}$/,               // ZIP+4 with space (12345 6789)
+  ]
+  
+  // Check if it's a zip code
+  if (zipCodePatterns.some(pattern => pattern.test(query.trim()))) {
+    return true
+  }
   
   // Common city search patterns
   const cityPatterns = [
@@ -43,15 +55,70 @@ export async function GET(request: NextRequest) {
     
     console.log(`🔍 Search: query="${query}", sport="${sport}", location="${location}"`)
     
-    // Check if this is a city search that should use Google Places
-    if (isCitySearch(query)) {
-      console.log('🌍 Detected city search, trying Google Places API...')
+    // Check if this is a location search (city or zip code) that should use Google Places
+    if (isLocationSearch(query)) {
+      console.log('🌍 Detected location search (city/zip code), trying Google Places API...')
       
       try {
-        // Try Google Places text search for worldwide results
+        // Check if it's a zip code - if so, geocode it first to get coordinates
+        const zipCodePatterns = [
+          /^\d{5}$/,                       // 5-digit zip code (12345)
+          /^\d{5}-\d{4}$/,                 // ZIP+4 format (12345-6789)
+          /^\d{5}\s+\d{4}$/                // ZIP+4 with space (12345 6789)
+        ]
+        
+        const isZipCode = zipCodePatterns.some(pattern => pattern.test(query.trim()))
+        
+        if (isZipCode) {
+          console.log('📮 Detected zip code, geocoding first...')
+          
+          // Use geocoding API to convert zip code to coordinates
+          const geocodeUrl = new URL('/api/google-places/geocode', request.url.split('/api/search')[0])
+          geocodeUrl.searchParams.set('address', query.trim())
+          
+          const geocodeResponse = await fetch(geocodeUrl.toString())
+          
+          if (geocodeResponse.ok) {
+            const geocodeData = await geocodeResponse.json()
+            
+            if (geocodeData.status === 'OK' && geocodeData.results.length > 0) {
+              const location = geocodeData.results[0].geometry.location
+              const formattedAddress = geocodeData.results[0].formatted_address
+              
+              console.log(`📍 Geocoded ${query} to: ${formattedAddress} (${location.lat}, ${location.lng})`)
+              
+              // Now search for courts near these coordinates
+              const nearbyUrl = new URL('/api/google-places/nearby', request.url.split('/api/search')[0])
+              nearbyUrl.searchParams.set('latitude', location.lat.toString())
+              nearbyUrl.searchParams.set('longitude', location.lng.toString())
+              nearbyUrl.searchParams.set('radius', '10000') // 10km radius
+              
+              // Set sport-specific keywords
+              if (sport && sport !== 'all') {
+                nearbyUrl.searchParams.set('keyword', `${sport} courts sports facilities`)
+              } else {
+                nearbyUrl.searchParams.set('keyword', 'tennis basketball courts sports facilities recreation')
+              }
+              
+              console.log(`🔍 Searching for courts near ${formattedAddress}`)
+              
+              const nearbyResponse = await fetch(nearbyUrl.toString())
+              
+              if (nearbyResponse.ok) {
+                const nearbyData = await nearbyResponse.json()
+                console.log(`✅ Found ${nearbyData.results?.length || 0} courts near zip code ${query}`)
+                return NextResponse.json(nearbyData)
+              }
+            } else {
+              console.log(`⚠️ Could not geocode zip code: ${query}`)
+            }
+          }
+        }
+        
+        // For non-zip codes or if zip code geocoding failed, use text search
         const placesUrl = new URL('/api/google-places/textsearch', request.url.split('/api/search')[0])
         
-        // Build search query for courts in the specified city
+        // Build search query for courts in the specified location
         let searchQuery = query
         if (sport && sport !== 'all') {
           searchQuery += ` ${sport} courts sports facilities`
@@ -61,7 +128,7 @@ export async function GET(request: NextRequest) {
         
         placesUrl.searchParams.set('query', searchQuery)
         
-        console.log(`🔍 Google Places search: "${searchQuery}"`)
+        console.log(`🔍 Google Places text search: "${searchQuery}"`)
         
         const placesResponse = await fetch(placesUrl.toString())
         
