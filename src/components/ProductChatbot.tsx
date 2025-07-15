@@ -220,7 +220,7 @@ export default function ProductChatbot({
     // Determine the sport - prioritize currentCourt.sport, then selectedSport, then default
     const detectedSport = currentCourt?.sport || selectedSport || 'general sports'
     
-    return {
+    const context = {
       courtType: currentCourt?.sport ? `${currentCourt.sport} court` : selectedSport ? `${selectedSport} court` : 'Sports court',
       location: currentCourt?.address || (location ? `${location.lat}, ${location.lng}` : 'Not specified'),
       surface: currentCourt?.surface || filters?.surface || 'Not specified',
@@ -229,6 +229,15 @@ export default function ProductChatbot({
       amenities: currentCourt?.amenities || filters?.amenities || [],
       priceRange: filters?.priceRange ? `$${filters.priceRange.min || 0}-${filters.priceRange.max || 500}` : 'Not specified'
     }
+    
+    // Debug logging to understand what context is being sent
+    console.log('🔍 ProductChatbot Context Debug:', {
+      currentCourtSearchProp: currentCourtSearch,
+      detectedSport,
+      finalContext: context
+    })
+    
+    return context
   }
 
   // Send message to backend and get product recommendations
@@ -596,6 +605,11 @@ export default function ProductChatbot({
             📍 {currentCourtSearch.currentCourt.name}
           </div>
         )}
+        
+        {/* Debug: Sport context indicator */}
+        <div className="mt-2 text-xs bg-blue-500 text-white rounded-full px-3 py-1 inline-block font-medium">
+          🏃 Sport: {currentCourtSearch.selectedSport || 'None'} | Context: {buildCourtContext().sport}
+        </div>
       </div>
 
       {/* Quick Actions */}
