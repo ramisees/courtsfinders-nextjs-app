@@ -608,11 +608,6 @@ export default function ProductChatbot({
             📍 {currentCourtSearch.currentCourt.name}
           </div>
         )}
-        
-        {/* Debug: Sport context indicator */}
-        <div className="mt-2 text-xs bg-blue-500 text-white rounded-full px-3 py-1 inline-block font-medium">
-          🏃 Sport: {currentCourtSearch.selectedSport || 'None'} | Context: {buildCourtContext().sport}
-        </div>
       </div>
 
       {/* Quick Actions */}

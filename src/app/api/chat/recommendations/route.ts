@@ -137,7 +137,10 @@ function buildClaudePrompt(
     // Tennis indicators
     if (messageText.includes('tennis') || messageText.includes('racquet') || messageText.includes('racket') || 
         messageText.includes('clay') || messageText.includes('grass court') || messageText.includes('hard court') ||
-        messageText.includes('tennis ball') || messageText.includes('serve') || messageText.includes('baseline')) {
+        messageText.includes('tennis ball') || messageText.includes('balls') || messageText.includes('serve') || 
+        messageText.includes('baseline') || messageText.includes('volley') || messageText.includes('forehand') ||
+        messageText.includes('backhand') || messageText.includes('ace') || messageText.includes('wimbledon') ||
+        messageText.includes('us open') || messageText.includes('french open')) {
       detectedSport = 'tennis'
     }
     // Basketball indicators  
