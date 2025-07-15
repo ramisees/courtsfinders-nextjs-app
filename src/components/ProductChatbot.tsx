@@ -475,33 +475,33 @@ export default function ProductChatbot({
   // Chat button when closed
   if (!isOpen) {
     return (
-      <div className={`fixed top-72 right-6 z-40 ${className}`}>
-        <div className="flex flex-col items-end gap-3">
+      <div className={`fixed top-72 right-3 md:right-6 z-40 ${className}`}>
+        <div className="flex flex-col items-end gap-2 md:gap-3">
           {/* Promotional banner with proper bounce animation */}
-          <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-4 py-2 rounded-full shadow-lg animate-custom-bounce">
-            <span className="text-sm font-bold">🎾 Get Equipment Recommendations!</span>
+          <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg animate-custom-bounce">
+            <span className="text-xs md:text-sm font-bold">🎾 Get Equipment Recommendations!</span>
           </div>
           
           {/* Main chat button */}
           <button
             onClick={() => handleChatToggle(true)}
-            className="bg-gradient-to-br from-black via-gray-800 to-black hover:from-gray-800 hover:to-black text-white p-5 rounded-2xl shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center gap-4 group border-3 border-yellow-400 hover:border-yellow-300 relative overflow-hidden animate-attention-pulse"
+            className="bg-gradient-to-br from-black via-gray-800 to-black hover:from-gray-800 hover:to-black text-white p-3 md:p-5 rounded-2xl shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 md:gap-4 group border-3 border-yellow-400 hover:border-yellow-300 relative overflow-hidden animate-attention-pulse"
             aria-label="Open sports gear recommendations"
           >
             {/* Animated background gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             
-            <div className="relative flex items-center gap-4">
+            <div className="relative flex items-center gap-2 md:gap-4">
               <div className="relative">
-                <div className="bg-yellow-400 text-black p-3 rounded-xl shadow-lg">
-                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="bg-yellow-400 text-black p-2 md:p-3 rounded-xl shadow-lg">
+                  <svg className="w-5 h-5 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                   </svg>
                 </div>
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center animate-ping font-bold">!</span>
+                <span className="absolute -top-1 -right-1 md:-top-2 md:-right-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 md:w-6 md:h-6 flex items-center justify-center animate-ping font-bold">!</span>
               </div>
               
-              <div className="text-left">
+              <div className="text-left hidden md:block">
                 <div className="text-lg font-bold">Sports Gear Assistant</div>
                 <div className="text-yellow-400 text-sm font-medium">Find the perfect equipment</div>
               </div>
@@ -515,15 +515,15 @@ export default function ProductChatbot({
   // Minimized state
   if (isMinimized) {
     return (
-      <div className={`fixed top-72 right-6 z-40 ${className}`}>
-        <div className="bg-gradient-to-r from-black to-gray-800 text-white rounded-2xl shadow-2xl p-4 flex items-center gap-4 border-2 border-yellow-400 min-w-[280px] animate-pulse">
-          <div className="bg-yellow-400 text-black p-2 rounded-lg">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className={`fixed top-72 right-3 md:right-6 z-40 ${className}`}>
+        <div className="bg-gradient-to-r from-black to-gray-800 text-white rounded-2xl shadow-2xl p-3 md:p-4 flex items-center gap-2 md:gap-4 border-2 border-yellow-400 min-w-[240px] md:min-w-[280px] animate-pulse">
+          <div className="bg-yellow-400 text-black p-1.5 md:p-2 rounded-lg">
+            <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
           </div>
           <div className="flex-1">
-            <span className="text-sm font-bold">Sports Gear Assistant</span>
+            <span className="text-xs md:text-sm font-bold">Sports Gear Assistant</span>
             <div className="text-xs text-yellow-400">Ready to help you find gear</div>
           </div>
           <div className="flex gap-1">
@@ -553,24 +553,24 @@ export default function ProductChatbot({
 
   // Full chat interface
   return (
-    <div className={`fixed top-72 right-6 w-[420px] h-[600px] bg-white rounded-3xl shadow-2xl border-3 border-yellow-400 flex flex-col z-40 animate-slide-up overflow-hidden ${className}`}>
+    <div className={`fixed inset-x-3 top-20 bottom-20 md:top-72 md:right-6 md:left-auto md:bottom-auto md:w-[420px] md:h-[600px] bg-white rounded-3xl shadow-2xl border-3 border-yellow-400 flex flex-col z-40 animate-slide-up overflow-hidden ${className}`}>
       {/* Header with enhanced design */}
-      <div className="bg-gradient-to-r from-black via-gray-800 to-black text-white p-6 rounded-t-3xl border-b-3 border-yellow-400 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-black via-gray-800 to-black text-white p-4 md:p-6 rounded-t-3xl border-b-3 border-yellow-400 relative overflow-hidden">
         {/* Animated background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-yellow-400/20 to-orange-500/20"></div>
         </div>
         
         <div className="relative flex justify-between items-start">
-          <div className="flex items-center gap-4">
-            <div className="bg-gradient-to-br from-yellow-400 to-orange-500 text-black p-3 rounded-2xl shadow-lg">
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="bg-gradient-to-br from-yellow-400 to-orange-500 text-black p-2 md:p-3 rounded-2xl shadow-lg">
+              <svg className="w-5 h-5 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
             </div>
             <div>
-              <h3 className="font-bold text-xl text-white">Sports Gear Assistant</h3>
-              <p className="text-yellow-400 text-sm font-medium">
+              <h3 className="font-bold text-lg md:text-xl text-white">Sports Gear Assistant</h3>
+              <p className="text-yellow-400 text-xs md:text-sm font-medium">
                 {currentCourtSearch.currentCourt ? 
                   `${currentCourtSearch.currentCourt.sport} recommendations` : 
                   currentCourtSearch.selectedSport ? 
@@ -580,22 +580,22 @@ export default function ProductChatbot({
               </p>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-1 md:gap-2">
             <button
               onClick={() => setIsMinimized(true)}
-              className="text-gray-300 hover:bg-yellow-400 hover:text-black rounded-xl p-2 transition-all transform hover:scale-110"
+              className="text-gray-300 hover:bg-yellow-400 hover:text-black rounded-xl p-1.5 md:p-2 transition-all transform hover:scale-110"
               aria-label="Minimize chat"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             <button
               onClick={() => handleChatToggle(false)}
-              className="text-gray-300 hover:bg-yellow-400 hover:text-black rounded-xl p-2 transition-all transform hover:scale-110"
+              className="text-gray-300 hover:bg-yellow-400 hover:text-black rounded-xl p-1.5 md:p-2 transition-all transform hover:scale-110"
               aria-label="Close chat"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -612,11 +612,11 @@ export default function ProductChatbot({
 
       {/* Quick Actions */}
       {messages.length <= 1 && (
-        <div className="p-3 bg-gradient-to-b from-gray-50 to-white">
+        <div className="p-2 md:p-3 bg-gradient-to-b from-gray-50 to-white">
           <p className="text-xs text-gray-600 mb-2 font-medium">
             {currentCourtSearch.selectedSport ? `${currentCourtSearch.selectedSport} recommendations:` : 'Popular searches:'}
           </p>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {quickActions.slice(0, 4).map((action, index) => (
               <button
                 key={index}
@@ -632,7 +632,7 @@ export default function ProductChatbot({
       )}
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+      <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4 bg-gray-50">
         {messages.map((message) => (
           <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[85%] rounded-2xl p-3 ${
@@ -652,9 +652,9 @@ export default function ProductChatbot({
                   {message.products && message.products.length > 0 && (
                     <div className="mt-3 space-y-3">
                       {message.products.map((product) => (
-                        <div key={product.id} className="bg-gray-50 rounded-xl border border-gray-200 p-3 hover:shadow-md transition-shadow">
-                          <div className="flex gap-3">
-                            <div className="relative w-20 h-20 rounded-lg shadow-sm bg-gray-100 overflow-hidden">
+                        <div key={product.id} className="bg-gray-50 rounded-xl border border-gray-200 p-2 md:p-3 hover:shadow-md transition-shadow">
+                          <div className="flex gap-2 md:gap-3">
+                            <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-lg shadow-sm bg-gray-100 overflow-hidden flex-shrink-0">
                               <img 
                                 src={product.imageUrl || `/api/placeholder/300x300`} 
                                 alt={product.name}
@@ -701,14 +701,14 @@ export default function ProductChatbot({
                               <p className="text-xs text-gray-600 mt-1 line-clamp-2">{product.whyRecommended}</p>
                               
                               {/* Purchase buttons */}
-                              <div className="flex gap-2 mt-2">
+                              <div className="flex flex-col md:flex-row gap-1 md:gap-2 mt-2">
                                 {product.purchaseLinks.amazon && (
                                   <a 
                                     href={product.purchaseLinks.amazon}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => handleProductClick(product, 'amazon', message.content)}
-                                    className="inline-flex items-center gap-1 bg-gradient-to-r from-orange-500 to-yellow-500 text-white text-xs px-3 py-1.5 rounded-lg hover:from-orange-600 hover:to-yellow-600 transition-all shadow-sm font-medium"
+                                    className="inline-flex items-center justify-center gap-1 bg-gradient-to-r from-orange-500 to-yellow-500 text-white text-xs px-2 md:px-3 py-1.5 rounded-lg hover:from-orange-600 hover:to-yellow-600 transition-all shadow-sm font-medium"
                                   >
                                     🛒 Amazon
                                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -733,7 +733,7 @@ export default function ProductChatbot({
                                     
                                     // Sport-specific retailers based on context or category
                                     if (sport.includes('tennis') || category.includes('tennis')) {
-                                      return `https://www.tennis-warehouse.com/search.php?search=${searchQuery}`
+                                      return `https://www.tennis-warehouse.com/searchresults.html?search=${searchQuery}`
                                     } else if (sport.includes('basketball') || category.includes('basketball')) {
                                       return `https://www.dickssportinggoods.com/search/SearchDisplay?searchTerm=${searchQuery}`
                                     } else if (sport.includes('pickleball') || category.includes('pickleball')) {
@@ -752,7 +752,7 @@ export default function ProductChatbot({
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   onClick={() => handleProductClick(product, 'retailer', message.content)}
-                                  className="inline-flex items-center gap-1 bg-blue-600 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all shadow-sm"
+                                  className="inline-flex items-center justify-center gap-1 bg-blue-600 text-white text-xs px-2 md:px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all shadow-sm"
                                 >
                                   🏪 Store
                                 </a>
@@ -773,13 +773,13 @@ export default function ProductChatbot({
 
       {/* More Quick Actions */}
       {messages.length > 1 && messages.length < 5 && (
-        <div className="px-4 py-2 bg-gray-50 border-t border-gray-100">
+        <div className="px-3 md:px-4 py-2 bg-gray-50 border-t border-gray-100">
           <div className="flex gap-2 overflow-x-auto pb-1">
             {quickActions.slice(4, 6).map((action, index) => (
               <button
                 key={index}
                 onClick={() => sendMessage(action.message)}
-                className="text-xs bg-white border border-gray-200 rounded-full px-3 py-1 hover:bg-yellow-50 hover:border-yellow-400 transition-all duration-200 whitespace-nowrap flex-shrink-0"
+                className="text-xs bg-white border border-gray-200 rounded-full px-2 md:px-3 py-1 hover:bg-yellow-50 hover:border-yellow-400 transition-all duration-200 whitespace-nowrap flex-shrink-0"
                 disabled={isLoading}
               >
                 {action.label}
@@ -790,7 +790,7 @@ export default function ProductChatbot({
       )}
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="p-4 bg-white border-t border-gray-200 rounded-b-2xl">
+      <form onSubmit={handleSubmit} className="p-3 md:p-4 bg-white border-t border-gray-200 rounded-b-2xl">
         <div className="flex gap-2">
           <input
             ref={inputRef}
@@ -798,15 +798,15 @@ export default function ProductChatbot({
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder={currentCourtSearch.selectedSport ? `Ask about ${currentCourtSearch.selectedSport} equipment...` : "Ask about sports equipment..."}
-            className="flex-1 border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+            className="flex-1 border border-gray-300 rounded-xl px-3 md:px-4 py-2 md:py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
             disabled={isLoading}
           />
           <button
             type="submit"
             disabled={isLoading || !inputValue.trim()}
-            className="bg-black text-white p-2.5 rounded-xl hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md hover:shadow-lg transform hover:scale-105 border-2 border-yellow-400"
+            className="bg-black text-white p-2 md:p-2.5 rounded-xl hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md hover:shadow-lg transform hover:scale-105 border-2 border-yellow-400"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
             </svg>
           </button>

@@ -211,7 +211,7 @@ Format as clean JSON with this exact structure:
       "whyRecommended": "Why this is perfect for their specific court/situation",
       "purchaseLinks": {
         "amazon": "https://www.amazon.com/s?k=[PRODUCT_NAME_SEARCH]&tag=lovesalve1915-20",
-        "retailer": "https://www.amazon.com/s?k=[PRODUCT_NAME_SEARCH]&tag=lovesalve1915-20",
+        "retailer": "https://www.tennis-warehouse.com/searchresults.html?search=[PRODUCT_NAME_SEARCH]",
         "direct": "https://www.amazon.com/s?k=[PRODUCT_NAME_SEARCH]&tag=lovesalve1915-20"
       },
       "userRating": "4.5/5 stars (1,234 reviews)",
@@ -231,8 +231,11 @@ Format as clean JSON with this exact structure:
 IMPORTANT: 
 - Replace [PRODUCT_NAME_SEARCH] with URL-encoded product name (Brand+Model+Category)
 - Replace [BRAND] and [MODEL] in imageUrl with actual brand and model names
-- Use only Amazon affiliate links with tag=lovesalve1915-20 to ensure working links and commission
-- All links should lead to Amazon search results for maximum compatibility
+- Use Amazon affiliate links with tag=lovesalve1915-20 for amazon and direct links
+- For tennis equipment, use Tennis Warehouse for retailer links: https://www.tennis-warehouse.com/searchresults.html?search=[SEARCH_TERMS]
+- For basketball equipment, use Dick's Sporting Goods: https://www.dickssportinggoods.com/search/SearchDisplay?searchTerm=[SEARCH_TERMS]
+- For other sports, use appropriate specialty retailers
+- Ensure all links are properly formatted and functional
 
 Make sure all recommendations are specifically tailored to ${surface} ${environment} courts and the sport of ${detectedSport}.`
 }
