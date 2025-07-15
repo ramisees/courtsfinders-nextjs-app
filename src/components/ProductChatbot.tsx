@@ -227,7 +227,10 @@ export default function ProductChatbot({
       environment: currentCourt?.indoor === false ? 'outdoor' : currentCourt?.indoor === true ? 'indoor' : 'outdoor',
       sport: detectedSport,
       amenities: currentCourt?.amenities || filters?.amenities || [],
-      priceRange: filters?.priceRange ? `$${filters.priceRange.min || 0}-${filters.priceRange.max || 500}` : 'Not specified'
+      priceRange: filters?.priceRange ? `$${filters.priceRange.min || 0}-${filters.priceRange.max || 500}` : 'Not specified',
+      // Add intelligent sport detection hints
+      autoDetectSport: true,
+      availableSports: ['tennis', 'basketball', 'pickleball', 'volleyball', 'racquetball']
     }
     
     // Debug logging to understand what context is being sent

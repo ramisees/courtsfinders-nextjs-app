@@ -70,6 +70,8 @@ interface ChatRequest {
     sport?: string
     amenities?: string[]
     priceRange?: string
+    autoDetectSport?: boolean
+    availableSports?: string[]
   }
   conversationHistory?: Array<{
     role: 'user' | 'assistant'
@@ -122,8 +124,41 @@ function buildClaudePrompt(
     environment = 'outdoor',
     sport = 'Not specified',
     amenities = [],
-    priceRange = 'Not specified'
+    priceRange = 'Not specified',
+    autoDetectSport = false,
+    availableSports = []
   } = courtContext
+
+  // Intelligent sport detection from user message when no sport is specified
+  let detectedSport = sport
+  if ((sport === 'Not specified' || sport === 'general sports') && autoDetectSport) {
+    const messageText = userMessage.toLowerCase()
+    
+    // Tennis indicators
+    if (messageText.includes('tennis') || messageText.includes('racquet') || messageText.includes('racket') || 
+        messageText.includes('clay') || messageText.includes('grass court') || messageText.includes('hard court') ||
+        messageText.includes('tennis ball') || messageText.includes('serve') || messageText.includes('baseline')) {
+      detectedSport = 'tennis'
+    }
+    // Basketball indicators  
+    else if (messageText.includes('basketball') || messageText.includes('hoop') || messageText.includes('dunk') ||
+             messageText.includes('court shoes') || messageText.includes('indoor court') || messageText.includes('outdoor court')) {
+      detectedSport = 'basketball'
+    }
+    // Pickleball indicators
+    else if (messageText.includes('pickleball') || messageText.includes('paddle tennis') || messageText.includes('paddle sport')) {
+      detectedSport = 'pickleball'
+    }
+    // Volleyball indicators
+    else if (messageText.includes('volleyball') || messageText.includes('spike') || messageText.includes('beach') ||
+             messageText.includes('net sport') || messageText.includes('volleyball net')) {
+      detectedSport = 'volleyball'
+    }
+    // If we detected a sport, update the court type as well
+    if (detectedSport !== sport) {
+      console.log(`🎯 Auto-detected sport: ${detectedSport} from message: "${userMessage}"`)
+    }
+  }
 
   // Use A/B test prompt override if provided
   if (promptOverride) {
@@ -137,7 +172,7 @@ Current Context:
 - Location: ${location}
 - Surface: ${surface}
 - Indoor/Outdoor: ${environment}
-- Sport: ${sport}
+- Sport: ${detectedSport}
 - Available Amenities: ${amenities.length > 0 ? amenities.join(', ') : 'Not specified'}
 - User Budget: ${priceRange}
 
@@ -159,7 +194,7 @@ Additional guidelines:
 - If budget range is specified, stay within those constraints
 - Prioritize equipment that performs well on ${surface} surfaces
 - Consider the climate and location if specified
-- Include sport-specific recommendations for ${sport} if applicable
+- Include sport-specific recommendations for ${detectedSport} if applicable
 
 Format as clean JSON with this exact structure:
 {
@@ -196,13 +231,12 @@ IMPORTANT:
 - Use only Amazon affiliate links with tag=lovesalve1915-20 to ensure working links and commission
 - All links should lead to Amazon search results for maximum compatibility
 
-Make sure all recommendations are specifically tailored to ${surface} ${environment} courts and the sport of ${sport}.`
+Make sure all recommendations are specifically tailored to ${surface} ${environment} courts and the sport of ${detectedSport}.`
 }
 
 // Get IP address for rate limiting
 function getIP(request: NextRequest): string {
-  const ip = request.ip 
-    ?? request.headers.get('x-forwarded-for')
+  const ip = request.headers.get('x-forwarded-for')
     ?? request.headers.get('x-real-ip')
     ?? request.headers.get('cf-connecting-ip')
     ?? 'anonymous'
