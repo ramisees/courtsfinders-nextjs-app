@@ -107,7 +107,42 @@ export async function GET(request: NextRequest) {
               if (nearbyResponse.ok) {
                 const nearbyData = await nearbyResponse.json()
                 console.log(`✅ Found ${nearbyData.results?.length || 0} courts near zip code ${query}`)
-                return NextResponse.json(nearbyData)
+                
+                if (nearbyData.status === 'OK' && nearbyData.results && nearbyData.results.length > 0) {
+                  // Transform the Google Places nearby results into the expected court format
+                  const transformedCourts = nearbyData.results.map((place: any) => ({
+                    id: place.place_id || `place_${Math.random()}`,
+                    name: place.name,
+                    sport: sport !== 'all' ? sport : 'multi-sport',
+                    address: place.vicinity || place.formatted_address || 'Address not available',
+                    coordinates: {
+                      lat: place.geometry?.location?.lat || 0,
+                      lng: place.geometry?.location?.lng || 0
+                    },
+                    rating: place.rating || 4.0,
+                    userRatingsTotal: place.user_ratings_total || 1,
+                    reviews: [],
+                    pricePerHour: 30,
+                    amenities: ['parking', 'restrooms'],
+                    surface: 'mixed',
+                    indoor: false,
+                    available: place.opening_hours?.open_now !== false,
+                    image: place.photos && place.photos.length > 0 
+                      ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${place.photos[0].photo_reference}&key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}`
+                      : 'https://placehold.co/400x300/e5e7eb/6b7280?text=Sports+Facility',
+                    phone: place.formatted_phone_number || null,
+                    website: place.website || null,
+                    description: `Sports facility in ${formattedAddress}`,
+                    capacity: 10,
+                    tags: ['google_places', 'zip_search']
+                  }))
+                  
+                  console.log(`✅ Transformed ${transformedCourts.length} zip code search results`)
+                  return NextResponse.json(transformedCourts)
+                } else {
+                  console.log('⚠️ No nearby results found for zip code')
+                  return NextResponse.json([])
+                }
               }
             } else {
               console.log(`⚠️ Could not geocode zip code: ${query}`)
